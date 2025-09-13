@@ -168,7 +168,7 @@ export const getMyUpcomingSession = () => {
   return { upcomingSessions };
 };
 
-export const acceptRequest = async (pendingRequestId) => {
+export const acceptRequest = async (pendingRequestId, dateTimeObj) => {
   try {
     console.log(pendingRequestId);
     const url = `${API_URL}/accept_request/${pendingRequestId}`;
@@ -180,8 +180,8 @@ export const acceptRequest = async (pendingRequestId) => {
         Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        Date: "12-10-2025",
-        Time: "9:12 pm",
+        Date: dateTimeObj.date,
+        Time: dateTimeObj.time,
       }),
     });
 
@@ -247,3 +247,31 @@ export const deleteRequest = async (requestId) => {
     console.log("Error during deleting request : ", error.message);
   }
 };
+
+
+
+export const handleAckAccept = async(requestId, status)=>{
+    try {
+      // console.log(status);
+    const url = `${API_URL}/acknoledge_helper/${requestId}`;
+
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        ackStatus:status
+      })
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    const { success, message } = result;
+    alert(message);
+  } catch (error) {
+    console.log("Error during deleting request : ", error.message);
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { getMyAcceptedReqeusts } from "../../api/helpApi";
+import { declineOffer, getMyAcceptedReqeusts, handleAckAccept } from "../../api/helpApi";
 import { MyContext } from "../../MyContext";
 import "./AcceptedRequests.css";
 
@@ -21,7 +21,7 @@ function AcceptedRequests() {
           <div key={request._id} className="accepted_card_conatainer">
             <div className="helper_profile">
               <img src="/images/profile.png" alt="" />
-              <p style={{ fontWeight: "600" }}>Varun Kumar</p>
+              <p style={{ fontWeight: "600" }}>{request?.helperId?.name}</p>
               <button>View Profile</button>
             </div>
             <div className="requests_details">
@@ -46,11 +46,11 @@ function AcceptedRequests() {
                 </span>
               </p>
               <div className="action_buttons">
-                <button style={{ background: "green", color: "#fff" }}>
-                  Accept
+                <button onClick={(e)=> handleAckAccept(request._id, "accepted")} style={{ background: "green", color: "#fff" }}>
+                  AckAccept
                 </button>
-                <button style={{ background: "red", color: "#fff" }}>
-                  Decline
+                <button onClick={(e)=> handleAckAccept(request._id, "waiting")} style={{ background: "red", color: "#fff" }}>
+                  AckDecline
                 </button>
               </div>
             </div>

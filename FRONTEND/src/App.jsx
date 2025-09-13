@@ -25,6 +25,8 @@ function App() {
   const [userProfile, setUserProfile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [showDateTime, setShowDateTime] = useState(false);
+  const [dateTimeObj, setDateTimeObj] = useState(null);
 
   const providerValues = {
     showRequestCard,
@@ -47,7 +49,9 @@ function App() {
     setDescription,
     acceptedRequests, setAcceptedRequests,
     acceptedOffers, setAcceptedOffers,
-    upcomingSessions, setUpcomingSessions
+    upcomingSessions, setUpcomingSessions,
+    showDateTime, setShowDateTime,
+    dateTimeObj, setDateTimeObj
   };
 
   return (
