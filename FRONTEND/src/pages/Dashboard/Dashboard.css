@@ -315,3 +315,28 @@ body{
     padding-inline: .1rem;
     cursor: pointer;
 }
+
+.schedule_time{
+    background-color: rgb(82, 190, 190);
+    position: absolute;
+    top: 5rem;
+    right: 25rem;
+    padding: 1rem;
+    width: fit-content;
+    display: flex;
+    border-radius: .5rem;
+    gap: 1rem;
+}
+
+.submit-btn{
+    padding: .5rem 1rem;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background-color: rgb(92, 92, 254);
+}

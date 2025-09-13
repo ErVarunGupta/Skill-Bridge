@@ -14,6 +14,7 @@ import HelpForm from "./HelpForm";
 import { Outlet, Route, Routes } from "react-router-dom";
 import AcceptedRequests from "./AcceptedRequests";
 import AcceptedOffers from "./AcceptedOffers";
+import CalendarInput from "./ScheduleForm";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
@@ -29,6 +30,9 @@ function Dashboard() {
     showOfferCard,
     setShowOfferCard,
     setMyOffer,
+    pendingRequest,
+    showDateTime,
+    dateTimeObj,
   } = useContext(MyContext);
 
   const { userProfile } = useAuthApi();
@@ -90,6 +94,16 @@ function Dashboard() {
           {showRequestCard ? <RequestCard /> : ""}
           {showOfferCard && <OfferCard />}
           <Outlet />
+
+          {showDateTime && <div className="schedule_time">
+            <CalendarInput />
+            <div>
+              <button type="button" className="submit-btn" onClick={(e)=> {
+              e.preventDefault();
+              acceptRequest(pendingRequest._id, dateTimeObj)
+              }}>Submit</button>
+            </div>
+          </div>}
         </div>
 
         <div className="right_dashboard_container ">
@@ -139,7 +153,9 @@ const RequestCard = () => {
         <p className="description">{myRequest?.description}</p>
         <p>
           Status:{" "}
-          <span style={{ color:  fillColor() , fontWeight:'600' }}>{myRequest?.status}</span>
+          <span style={{ color: fillColor(), fontWeight: "600" }}>
+            {myRequest?.status}
+          </span>
         </p>
         <button onClick={() => deleteRequest(myRequest._id)}>Remove</button>
       </div>
@@ -148,10 +164,7 @@ const RequestCard = () => {
 };
 
 const OfferCard = () => {
-  const { setShowOfferCard, myOffer, pendingRequest } = useContext(MyContext);
-  const acceptHandler = () => {
-    acceptRequest(pendingRequest._id);
-  };
+  const { setShowOfferCard, myOffer, showDateTime, setShowDateTime } = useContext(MyContext);
 
   const fillColor = () => {
     if (myOffer?.status === "accepted") return "green";
@@ -169,10 +182,12 @@ const OfferCard = () => {
         <p className="description">{myOffer?.description}</p>
         <p>
           Status:{" "}
-          <span style={{ color:  fillColor() , fontWeight:'600' }}>{myOffer?.status}</span>
+          <span style={{ color: fillColor(), fontWeight: "600" }}>
+            {myOffer?.status}
+          </span>
         </p>
         <div className="action_button">
-          <button className="accept" onClick={acceptHandler}>
+          <button className="accept" onClick={()=>setShowDateTime(!showDateTime)}>
             Accept
           </button>
           <button onClick={() => declineOffer(myOffer._id)} className="decline">

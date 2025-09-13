@@ -25,9 +25,7 @@ function HelpForm() {
 
       const result = await response.json();
       const { success, message } = result;
-      if (success) {
-        alert("Request is sent!");
-      }
+      alert(message);
     } catch (error) {
       console.log("Error during post request: ", error.message);
     }

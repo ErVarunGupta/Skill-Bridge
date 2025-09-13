@@ -21,7 +21,7 @@ function UpcomingSessions() {
             <div key={request._id} className="accepted_card_conatainer">
               <div className="helper_profile">
                 <img src="/images/profile.png" alt="" />
-                <p style={{ fontWeight: "600" }}>Varun Kumar</p>
+                <p style={{ fontWeight: "600" }}>{request?.helperId?.name}</p>
                 <button>View Profile</button>
               </div>
               <div className="requests_details">
