@@ -3,7 +3,13 @@ import Navbar from "../../layouts/Navbar";
 import "./Dashboard.css";
 import { MyContext } from "../../MyContext";
 import { useAuthApi } from "../../api/authApi";
-import { acceptRequest, declineOffer, deleteRequest, useMyRequests, usePendingRequests } from "../../api/helpApi";
+import {
+  acceptRequest,
+  declineOffer,
+  deleteRequest,
+  useMyRequests,
+  usePendingRequests,
+} from "../../api/helpApi";
 import HelpForm from "./HelpForm";
 import { Outlet, Route, Routes } from "react-router-dom";
 import AcceptedRequests from "./AcceptedRequests";
@@ -20,8 +26,9 @@ function Dashboard() {
     setPendingRequest,
     setMyRequests,
     setMyRequest,
-    showOfferCard, setShowOfferCard,
-    setMyOffer
+    showOfferCard,
+    setShowOfferCard,
+    setMyOffer,
   } = useContext(MyContext);
 
   const { userProfile } = useAuthApi();
@@ -81,8 +88,8 @@ function Dashboard() {
 
         <div className="main_dashboard_container">
           {showRequestCard ? <RequestCard /> : ""}
-          {showOfferCard && <OfferCard/>}
-            <Outlet/>
+          {showOfferCard && <OfferCard />}
+          <Outlet />
         </div>
 
         <div className="right_dashboard_container ">
@@ -99,7 +106,7 @@ function Dashboard() {
                         setShowOfferCard(true);
                         setPendingRequest(request);
                         setMyOffer(request);
-                        console.log(request)
+                        console.log(request);
                       }}
                     ></i>
                   </span>
@@ -115,42 +122,62 @@ function Dashboard() {
 
 const RequestCard = () => {
   const { setShowRequestCard, myRequest } = useContext(MyContext);
+
+  const fillColor = () => {
+    if (myRequest?.status === "accepted") return "green";
+    else if (myRequest?.status === "pending") return "orange";
+    else return "red";
+  };
   return (
     <>
-      <div className="card_container" style={{  }}>
+      <div className="card_container" style={{}}>
         <div className="cross" onClick={() => setShowRequestCard(false)}>
           <i class="fa-solid fa-xmark"></i>
         </div>
         <img src="/images/profile.png" alt="" />
         <p className="title">{myRequest?.title}</p>
         <p className="description">{myRequest?.description}</p>
-        <button onClick={()=> deleteRequest(myRequest._id)}>Remove</button>
+        <p>
+          Status:{" "}
+          <span style={{ color:  fillColor() , fontWeight:'600' }}>{myRequest?.status}</span>
+        </p>
+        <button onClick={() => deleteRequest(myRequest._id)}>Remove</button>
       </div>
     </>
   );
 };
 
-
 const OfferCard = () => {
-  const { setShowOfferCard, myOffer, pendingRequest} = useContext(MyContext);
-  const acceptHandler = ()=>{
+  const { setShowOfferCard, myOffer, pendingRequest } = useContext(MyContext);
+  const acceptHandler = () => {
     acceptRequest(pendingRequest._id);
-  }
+  };
+
+  const fillColor = () => {
+    if (myOffer?.status === "accepted") return "green";
+    else if (myOffer?.status === "pending") return "orange";
+    else return "red";
+  };
   return (
     <>
-      <div
-        className="offer_card_container"
-        
-      >
-        <div className="cross" onClick={()=> setShowOfferCard(false)}>
+      <div className="offer_card_container">
+        <div className="cross" onClick={() => setShowOfferCard(false)}>
           <i class="fa-solid fa-xmark"></i>
         </div>
         <img src="/images/profile.png" alt="" />
         <p className="title">{myOffer?.title}</p>
         <p className="description">{myOffer?.description}</p>
+        <p>
+          Status:{" "}
+          <span style={{ color:  fillColor() , fontWeight:'600' }}>{myOffer?.status}</span>
+        </p>
         <div className="action_button">
-          <button className="accept" onClick={acceptHandler}>Accept</button>
-          <button onClick={()=> declineOffer(myOffer._id)} className="decline">Decline</button>
+          <button className="accept" onClick={acceptHandler}>
+            Accept
+          </button>
+          <button onClick={() => declineOffer(myOffer._id)} className="decline">
+            Decline
+          </button>
         </div>
       </div>
     </>
