@@ -14,9 +14,14 @@ POST http://localhost:8080/api/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email":"ram@gmail.com",
-  "password":"ram"
+  "email":"user1@gmail.com",
+  "password":"user1"
 }
+
+### get User
+GET http://localhost:8080/api/user HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzU3OTI4MSwiZXhwIjoxNzU3NjY1NjgxfQ.V_mcWLCuiFMOv3C8eV3MLkQrLbv3I27-4I3nmvZqnlI
 
 
 ### Create request
@@ -45,7 +50,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEz
 ###
 GET http://localhost:8080/api/get_all_requests HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEzYWM3ZTdjN2M0NCIsImlhdCI6MTc1NzUyNDYzOSwiZXhwIjoxNzU3NjExMDM5fQ.TZ0eR2r7dQ6TFrAPrJ6YgiOK7xow1cijn0DJ83dOOCI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzc2MDcxMCwiZXhwIjoxNzU3ODQ3MTEwfQ.vp70Kth68eOzkbO9k0tU_VrlKXLzOsdRmM6iK7LhuFY
 
 
 
@@ -61,20 +66,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEz
 ###
 GET http://localhost:8080/api/get_my_requests HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFkNTFiZjk0ZTVmOTZiZTQ2ZGU2YiIsImlhdCI6MTc1NzUzMzQ3OCwiZXhwIjoxNzU3NjE5ODc4fQ.B4es-7blbBXINBKp1wKlPjmR96ldb_C9OIMVWK3WSMI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEzYWM3ZTdjN2M0NCIsImlhdCI6MTc1NzY4MDU2OCwiZXhwIjoxNzU3NzY2OTY4fQ.WNjcx_J9GXUFMfMQCiARrkNKhMCs22hvy-dtXtftMew
 
 
 
 # Accept request
 ###
-PUT http://localhost:8080/api/accept_request/68c1d551f94e5f96be46de72 HTTP/1.1
+PUT http://localhost:8080/api/accept_request/68c411a0862ece10bf3a365a HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzUyNDkyMCwiZXhwIjoxNzU3NjExMzIwfQ.QMxmYIpNrZySuhIJJ-qkiu9C7zUGYdAseFnA-AQ38Rk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1NzY5ODYyMiwiZXhwIjoxNzU3Nzg1MDIyfQ.rwr51DXSUNwprMWU31NCVBO8Jd2H4LD7YjPL_f-2RqE
 
 {
   "Date":"11-09-2025",
   "Time":"01: 15 pm"
 }
+
+###my accepted requests
+GET http://localhost:8080/api/get_my_accepted_requests HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEzYWM3ZTdjN2M0NCIsImlhdCI6MTc1NzY5ODUxMSwiZXhwIjoxNzU3Nzg0OTExfQ.B99YhN1e5e-e09rPbCH2uYOyw-vVmZveajtkAJXaTFk
 
 # Acknowledge Helper
 ###
@@ -91,7 +101,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFkNTFiZjk0ZTVm
 ###
 PUT http://localhost:8080/api/decline_request/68c1c6928f31566307ae9d29 HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzUzMzgyMywiZXhwIjoxNzU3NjIwMjIzfQ.rZjOlMw6cxPTs064DLUSQI5fsjkGOOfI8eR0IhX-XOA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzY2MzIxNSwiZXhwIjoxNzU3NzQ5NjE1fQ.hK93HsiTQ4V8EJo6b2-_BbsQV4oirxV48PASYzFWif8
 
 
 
