@@ -1,9 +1,160 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import Navbar from "../../layouts/Navbar";
+import "./Dashboard.css";
+import { MyContext } from "../../MyContext";
+import { useAuthApi } from "../../api/authApi";
+import { acceptRequest, declineOffer, deleteRequest, useMyRequests, usePendingRequests } from "../../api/helpApi";
+import HelpForm from "./HelpForm";
+import { Outlet, Route, Routes } from "react-router-dom";
+import AcceptedRequests from "./AcceptedRequests";
+import AcceptedOffers from "./AcceptedOffers";
+
+const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
 function Dashboard() {
+  const {
+    showRequestCard,
+    setShowRequestCard,
+    setUserProfile,
+    setPendingRequests,
+    setPendingRequest,
+    setMyRequests,
+    setMyRequest,
+    showOfferCard, setShowOfferCard,
+    setMyOffer
+  } = useContext(MyContext);
+
+  const { userProfile } = useAuthApi();
+  const { pendingRequests } = usePendingRequests();
+  const { myRequests } = useMyRequests();
+
+  useEffect(() => {
+    setUserProfile(userProfile);
+  }, [userProfile]);
+
+  useEffect(() => {
+    setPendingRequests(pendingRequests);
+  }, [pendingRequests]);
+
+  useEffect(() => {
+    setMyRequests(myRequests);
+  }, [myRequests]);
+
   return (
-    <div>Dashboard</div>
-  )
+    <>
+      <Navbar />
+      <div className="dashboard-container">
+        <div className="left_dashboard_container">
+          <div className="profile_container">
+            <img src="/images/profile.png" alt="" />
+            <p className="profile_name">{userProfile?.name}</p>
+            <p className="username">@{userProfile?.username}</p>
+            <p className="bio">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem,
+              quia!
+            </p>
+          </div>
+          <div className="ratings">
+            <p>Accepted Requests: 0</p>
+            <p>Ratings: 3</p>
+          </div>
+          <div className="my_requests">
+            <h3>My Requests</h3>
+            <ul>
+              {myRequests?.map((request) => (
+                <li key={request?._id}>
+                  <p>{request?.title}</p>
+                  <span>
+                    <i
+                      class="fa-solid fa-eye"
+                      onClick={() => {
+                        setShowRequestCard(true);
+                        setMyRequest(request);
+                      }}
+                    ></i>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="main_dashboard_container">
+          {showRequestCard ? <RequestCard /> : ""}
+          {showOfferCard && <OfferCard/>}
+            <Outlet/>
+        </div>
+
+        <div className="right_dashboard_container ">
+          <div className="all_pending_requests">
+            <h3>All Offers</h3>
+            <ul>
+              {pendingRequests?.map((request) => (
+                <li key={request._id}>
+                  <p>{request?.title}</p>
+                  <span>
+                    <i
+                      className="fa-solid fa-eye"
+                      onClick={() => {
+                        setShowOfferCard(true);
+                        setPendingRequest(request);
+                        setMyOffer(request);
+                        console.log(request)
+                      }}
+                    ></i>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Dashboard
+const RequestCard = () => {
+  const { setShowRequestCard, myRequest } = useContext(MyContext);
+  return (
+    <>
+      <div className="card_container" style={{  }}>
+        <div className="cross" onClick={() => setShowRequestCard(false)}>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <img src="/images/profile.png" alt="" />
+        <p className="title">{myRequest?.title}</p>
+        <p className="description">{myRequest?.description}</p>
+        <button onClick={()=> deleteRequest(myRequest._id)}>Remove</button>
+      </div>
+    </>
+  );
+};
+
+
+const OfferCard = () => {
+  const { setShowOfferCard, myOffer, pendingRequest} = useContext(MyContext);
+  const acceptHandler = ()=>{
+    acceptRequest(pendingRequest._id);
+  }
+  return (
+    <>
+      <div
+        className="offer_card_container"
+        
+      >
+        <div className="cross" onClick={()=> setShowOfferCard(false)}>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <img src="/images/profile.png" alt="" />
+        <p className="title">{myOffer?.title}</p>
+        <p className="description">{myOffer?.description}</p>
+        <div className="action_button">
+          <button className="accept" onClick={acceptHandler}>Accept</button>
+          <button onClick={()=> declineOffer(myOffer._id)} className="decline">Decline</button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Dashboard;

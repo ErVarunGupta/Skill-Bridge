@@ -127,6 +127,75 @@ export const getMyRequests =  async(req, res)=>{
     }
 }
 
+export const getAcceptedRequests =  async(req, res)=>{
+    try {
+        const userId = req.user.id;
+        const myRequests = await HelpRequest.find({userId, status: "accepted", ackStatus: "waiting"});
+        if(myRequests.length == 0){
+            return res.status(404).json({
+                message: "Requests not found!",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            myRequests
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
+export const getAcceptedOffers =  async(req, res)=>{
+    try {
+        const userId = req.user.id;
+        const myOffers = await HelpRequest.find({helperId: userId, status: "accepted"});
+        if(myOffers.length == 0){
+            return res.status(404).json({
+                message: "Requests not found!",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            myOffers
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
+export const getUpcomingSession =  async(req, res)=>{
+    try {
+        const userId = req.user.id;
+        const myOffers = await HelpRequest.find({ackStatus: "accepted", status: "accepted", userId: userId});
+        if(myOffers.length == 0){
+            return res.status(404).json({
+                message: "Requests not found!",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            myOffers
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
 
 export const acceptRequest = async(req, res)=>{
     try {
@@ -194,6 +263,13 @@ export const declineRequest = async(req, res)=>{
         if(!request){
             return res.status(404).json({
                 message: "Request not found!",
+                success: false
+            })
+        }
+
+        if(request.status === "completed"){
+            return res.status(400).json({
+                message: "This is completed request!",
                 success: false
             })
         }
