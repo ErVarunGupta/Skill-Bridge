@@ -69,7 +69,7 @@ export const useMyRequests = () => {
   return { myRequests };
 };
 
-export const getMyAcceptedReqeusts = () => {
+export const useMyAcceptedReqeusts = () => {
   const { acceptedRequests, setAcceptedRequests } = useContext(MyContext);
   const fetchRequests = async () => {
     try {
@@ -84,7 +84,7 @@ export const getMyAcceptedReqeusts = () => {
       });
 
       const result = await response.json();
-      // console.log(result);
+      console.log(result);
 
       const { success, message } = result;
       if (success) {
@@ -102,7 +102,7 @@ export const getMyAcceptedReqeusts = () => {
   return { acceptedRequests };
 };
 
-export const getMyAcceptedOffers = () => {
+export const useMyAcceptedOffers = () => {
   const { acceptedOffers, setAcceptedOffers } = useContext(MyContext);
   const fetchOffers = async () => {
     try {
@@ -117,7 +117,7 @@ export const getMyAcceptedOffers = () => {
       });
 
       const result = await response.json();
-      // console.log(result);
+      console.log(result);
 
       const { success, message } = result;
       if (success) {
@@ -135,7 +135,7 @@ export const getMyAcceptedOffers = () => {
   return { acceptedOffers };
 };
 
-export const getMyUpcomingSession = () => {
+export const useMyUpcomingSession = () => {
   const { upcomingSessions, setUpcomingSessions } = useContext(MyContext);
   const fetchSessions = async () => {
     try {
@@ -191,6 +191,7 @@ export const acceptRequest = async (pendingRequestId, dateTimeObj) => {
     const { success, message } = result;
     if (success) {
       alert("Offer Accepted!");
+      window.location.reload();
     } else {
       alert(message);
     }
@@ -218,6 +219,7 @@ export const declineOffer = async (requestId) => {
     const { success, message } = result;
     if (success) {
       alert("Offer Rejected Successfully!");
+      window.location.reload();
     } else {
       alert(message);
     }
@@ -242,7 +244,12 @@ export const deleteRequest = async (requestId) => {
     console.log(result);
 
     const { success, message } = result;
-    alert(message);
+    if(success){
+      alert("Request deleted successfull!");
+      window.location.reload();
+    }else{
+      alert(message);
+    }
   } catch (error) {
     console.log("Error during deleting request : ", error.message);
   }
@@ -270,7 +277,12 @@ export const handleAckAccept = async(requestId, status)=>{
     console.log(result);
 
     const { success, message } = result;
-    alert(message);
+    if(success){
+      alert(message);
+      window.location.reload();
+    }else{
+      alert(message);
+    }
   } catch (error) {
     console.log("Error during deleting request : ", error.message);
   }

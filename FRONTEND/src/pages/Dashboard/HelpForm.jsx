@@ -23,9 +23,14 @@ function HelpForm() {
         }),
       });
 
+      
       const result = await response.json();
+      console.log(result);
       const { success, message } = result;
-      alert(message);
+      if(success){
+        alert("Request post successfully!");
+        window.location.reload();
+      }
     } catch (error) {
       console.log("Error during post request: ", error.message);
     }
