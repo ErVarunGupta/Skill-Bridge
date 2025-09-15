@@ -86,3 +86,12 @@
 .profile_Card p:hover{
     transform: translateY(-2px);
 }
+
+
+.nav_links.active{
+    border-bottom: 2px solid blue;
+}
+
+.deactive{
+    border: none;
+}

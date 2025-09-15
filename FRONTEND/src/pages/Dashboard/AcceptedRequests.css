@@ -34,9 +34,11 @@
 }
 
 .helper_profile img{
-    width: 35%;
+    width: 5rem;
+    height: 5rem;
     background-color: #f4f2ee;
     border-radius: 100%;
+    object-fit: fill;
 }
 
 .helper_profile button{

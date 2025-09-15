@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { useContext } from "react";
+import { MyContext } from "../MyContext";
 
 function Navbar() {
   const [showProfile, setShowProfile] = useState(false);
@@ -9,34 +11,35 @@ function Navbar() {
     <div className="navbar">
       <div className="left_navbar">
         <div className="skill_bridge_icon">
-          <Link to="/dashboard" className="skill_bridge_link">
+          <NavLink to="/dashboard" className="skill_bridge_link"
+          >
             Skill Bridge
-          </Link>
+          </NavLink>
         </div>
       </div>
       <div className="right_navbar">
         <p>
-          <Link to="/dashboard" className="nav_links">
+          <NavLink to="/dashboard/help" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
             Home
-          </Link>
+          </NavLink>
         </p>
         <hr />
         <p>
-          <Link to="/dashboard/upcoming_sessions" className="nav_links">
+          <NavLink to="/dashboard/upcoming_sessions" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
             Upcoming Session
-          </Link>
+          </NavLink>
         </p>
         <hr />
         <p>
-          <Link to="/dashboard/accepted_requests" className="nav_links">
+          <NavLink to="/dashboard/accepted_requests" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
             Accepted Requests
-          </Link>
+          </NavLink>
         </p>
         <hr />
         <p>
-          <Link to="/dashboard/accepted_offers" className="nav_links">
+          <NavLink to="/dashboard/accepted_offers" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
             Accepted Offers
-          </Link>
+          </NavLink>
         </p>
         <hr />
         <div
@@ -53,6 +56,8 @@ function Navbar() {
 
 export const ProfileCard = () => {
   const navigate = useNavigate();
+  // const {userProfile} = useContext(MyContext);
+  // console.log(userProfile)
 
   const logout = () => {
     localStorage.clear();
@@ -62,7 +67,8 @@ export const ProfileCard = () => {
   };
   return (
     <div className="profile_Card">
-      <p>User Profile</p>
+      <p><NavLink to="/show_profile" style={{textDecoration:'none', color: '#000'}}>User Profile</NavLink></p>
+      {/* <p><Link to="/update_profile" style={{textDecoration:'none', color: '#000'}}>Edit Profile</Link></p> */}
       <p onClick={logout}>Log Out</p>
     </div>
   );

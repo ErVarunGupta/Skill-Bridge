@@ -57,11 +57,15 @@ const profileSchema = new Schema({
     type: [educationSchema],
     default: [],
   },
-  averageRating: {
+   totalReviews: {
     type: Number,
-    default: 0,
+    default: 0
   },
-  totalReviews: {
+  totalRatings: {
+    type: Number,
+    default: 0
+  },
+  averageRating: {
     type: Number,
     default: 0,
   },

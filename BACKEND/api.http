@@ -21,7 +21,7 @@ Content-Type: application/json
 ### get User
 GET http://localhost:8080/api/user HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzU3OTI4MSwiZXhwIjoxNzU3NjY1NjgxfQ.V_mcWLCuiFMOv3C8eV3MLkQrLbv3I27-4I3nmvZqnlI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzg2MDIzMCwiZXhwIjoxNzU3OTQ2NjMwfQ.aXkV2kcTbUjWQZ3wSTFrvIO_s28_iuyP61B6Z3ESxVg
 
 
 ### Create request
@@ -96,7 +96,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFkNTFiZjk0ZTVm
   "ackStatus":"accepted"
 }
 
-
 # Decline Request
 ###
 PUT http://localhost:8080/api/decline_request/68c1c6928f31566307ae9d29 HTTP/1.1
@@ -118,3 +117,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQz
 DELETE http://localhost:8080/api/delete_request/68c1b3dabe1536e5ee987067 HTTP/1.1
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5NWRmMmUyOWQzNzAyZmQ0Nzg0OCIsImlhdCI6MTc1NzUyNDkyMCwiZXhwIjoxNzU3NjExMzIwfQ.QMxmYIpNrZySuhIJJ-qkiu9C7zUGYdAseFnA-AQ38Rk
+
+
+
+###
+GET http://localhost:8080/api/all_user_profile HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzc5ODE4MywiZXhwIjoxNzU3ODg0NTgzfQ.JYXHNqgihrgYv6lrvjpbd-g4_wx6ZKz48Qq0D5nqH30
+
+
+###
+GET http://localhost:8080/api/my_profile HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzc5ODE4MywiZXhwIjoxNzU3ODg0NTgzfQ.JYXHNqgihrgYv6lrvjpbd-g4_wx6ZKz48Qq0D5nqH30
+
+
+
+###
+POST http://localhost:8080/api/upload_profile_picture HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzg2MDIzMCwiZXhwIjoxNzU3OTQ2NjMwfQ.aXkV2kcTbUjWQZ3wSTFrvIO_s28_iuyP61B6Z3ESxVg
+

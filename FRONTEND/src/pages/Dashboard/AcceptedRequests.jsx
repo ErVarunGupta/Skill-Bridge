@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { declineOffer, getMyAcceptedReqeusts, handleAckAccept } from "../../api/helpApi";
+import { declineOffer, handleAckAccept, useMyAcceptedReqeusts } from "../../api/helpApi";
 import { MyContext } from "../../MyContext";
 import "./AcceptedRequests.css";
 
 function AcceptedRequests() {
   const { setAcceptedRequests } = useContext(MyContext);
-  const { acceptedRequests } = getMyAcceptedReqeusts();
+  const { acceptedRequests } = useMyAcceptedReqeusts();
 
   useEffect(() => {
     setAcceptedRequests(acceptedRequests);
@@ -20,7 +20,7 @@ function AcceptedRequests() {
         {acceptedRequests?.map((request) => (
           <div key={request._id} className="accepted_card_conatainer">
             <div className="helper_profile">
-              <img src="/images/profile.png" alt="" />
+              <img src={request?.helperId?.profilePicture} alt="" />
               <p style={{ fontWeight: "600" }}>{request?.helperId?.name}</p>
               <button>View Profile</button>
             </div>

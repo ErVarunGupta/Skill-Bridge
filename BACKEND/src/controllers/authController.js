@@ -4,6 +4,7 @@ import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 import Profile from "../models/ProfileModel.js";
 import dotenv from 'dotenv'
+import cloudinary from "../config/cloudinary.js";
 dotenv.config();
 
 export const Register = async(req, res)=>{
@@ -106,6 +107,95 @@ export const getUserProfile = async(req, res)=>{
     return res.status(200).json({
       success: true,
       user
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      success: false
+    })
+  }
+}
+
+
+export const updateUserProfile = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found!",
+        success: false,
+      });
+    }
+
+    if (email) {
+      const otherUser = await User.findOne({ email, _id: { $ne: userId } });
+      if (otherUser) {
+        return res.status(400).json({
+          message: "Email already in use, please try another one",
+          success: false,
+        });
+      }
+      user.email = email;
+    }
+
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
+
+    if (name) {
+      user.name = name;
+    }
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Profile updated successfully!",
+      success: true,
+      user, 
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
+
+export const uploadProfilePicture = async(req, res)=>{
+  const userId = req.user.id;
+  try {
+    if(!req.file){
+      return res.status(404).json({
+        message: "No file uploaded",
+        success: false
+      })
+    }
+
+    const user = await User.findById(userId);
+    if(!user){
+      return res.status(404).json({
+        message: "User not found!",
+        success: false
+      })
+    }
+
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "profile_pics", 
+    });
+
+    user.profilePicture = result.secure_url;
+    // user.profilePicture = req.file.filename;
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Profile picture updated!",
+      success: true
     })
   } catch (error) {
     return res.status(500).json({

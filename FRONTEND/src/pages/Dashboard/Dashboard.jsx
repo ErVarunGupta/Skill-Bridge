@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import {jwtDecode} from "jwt-decode";
 import Navbar from "../../layouts/Navbar";
 import "./Dashboard.css";
 import { MyContext } from "../../MyContext";
-import { useAuthApi } from "../../api/authApi";
+import {  getUserProfile } from "../../api/authApi";
 import {
   acceptRequest,
   declineOffer,
@@ -10,13 +11,9 @@ import {
   useMyRequests,
   usePendingRequests,
 } from "../../api/helpApi";
-import HelpForm from "./HelpForm";
-import { Outlet, Route, Routes } from "react-router-dom";
-import AcceptedRequests from "./AcceptedRequests";
-import AcceptedOffers from "./AcceptedOffers";
+import { Link, Outlet} from "react-router-dom";
 import CalendarInput from "./ScheduleForm";
 
-const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
 function Dashboard() {
   const {
@@ -35,13 +32,13 @@ function Dashboard() {
     dateTimeObj,
   } = useContext(MyContext);
 
-  const { userProfile } = useAuthApi();
+  const decoded = jwtDecode(localStorage.getItem('token'));
+
+  const {userProfile} = getUserProfile(decoded.id);
   const { pendingRequests } = usePendingRequests();
   const { myRequests } = useMyRequests();
 
-  useEffect(() => {
-    setUserProfile(userProfile);
-  }, [userProfile]);
+
 
   useEffect(() => {
     setPendingRequests(pendingRequests);
@@ -57,17 +54,14 @@ function Dashboard() {
       <div className="dashboard-container">
         <div className="left_dashboard_container">
           <div className="profile_container">
-            <img src="/images/profile.png" alt="" />
-            <p className="profile_name">{userProfile?.name}</p>
-            <p className="username">@{userProfile?.username}</p>
-            <p className="bio">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem,
-              quia!
-            </p>
+            <img src={userProfile?.profile?.userId?.profilePicture} alt="" />
+            <p className="profile_name">{userProfile?.profile?.userId?.name}</p>
+            <p className="username">@{userProfile?.profile?.userId?.username}</p>
+            <p className="bio">{userProfile?.profile?.bio}</p>
           </div>
           <div className="ratings">
-            <p>Accepted Requests: 0</p>
-            <p>Ratings: 3</p>
+            <p>Accepted Requests: {userProfile?.profile?.totalReviews}</p>
+            <p>Ratings: {userProfile?.profile?.averageRating}</p>
           </div>
           <div className="my_requests">
             <h3>My Requests</h3>
@@ -77,7 +71,7 @@ function Dashboard() {
                   <p>{request?.title}</p>
                   <span>
                     <i
-                      class="fa-solid fa-eye"
+                      className="fa-solid fa-eye"
                       onClick={() => {
                         setShowRequestCard(true);
                         setMyRequest(request);
@@ -146,7 +140,7 @@ const RequestCard = () => {
     <>
       <div className="card_container" style={{}}>
         <div className="cross" onClick={() => setShowRequestCard(false)}>
-          <i class="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </div>
         <img src="/images/profile.png" alt="" />
         <p className="title">{myRequest?.title}</p>
@@ -175,7 +169,7 @@ const OfferCard = () => {
     <>
       <div className="offer_card_container">
         <div className="cross" onClick={() => setShowOfferCard(false)}>
-          <i class="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </div>
         <img src="/images/profile.png" alt="" />
         <p className="title">{myOffer?.title}</p>

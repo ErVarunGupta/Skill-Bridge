@@ -1,6 +1,6 @@
-body{
+/* body{
     overflow: hidden;
-}
+} */
 
 .dashboard-container{
     height: 100vh;
@@ -35,8 +35,9 @@ body{
 }
 .left_dashboard_container .profile_container img{
     width: 6rem;
+    height: 6rem;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: fill;
     background-color: #f4f2ee;
 }
 .left_dashboard_container .profile_container .profile_name{
@@ -302,7 +303,7 @@ body{
     gap: 1rem;
     border-radius: .5rem;
     top: 60%;
-    right: 16%;
+    right: 15%;
     transform: translate(-50%, -50%);
 }
 

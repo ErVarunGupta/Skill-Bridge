@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../MyContext";
-import { declineOffer, getMyAcceptedOffers } from "../../api/helpApi";
+import { declineOffer,  useMyAcceptedOffers } from "../../api/helpApi";
 import "./AcceptedRequests.css";
 
 function AcceptedOffers() {
   const { setAcceptedOffers } = useContext(MyContext);
-  const { acceptedOffers } = getMyAcceptedOffers();
+  const { acceptedOffers } = useMyAcceptedOffers();
 
   useEffect(() => {
     setAcceptedOffers(acceptedOffers);
-    // console.log(acceptedOffers);
+    console.log(acceptedOffers[0]?.userId.profilePicture);
   }, [acceptedOffers]);
 
   return (
@@ -27,7 +27,7 @@ function AcceptedOffers() {
               {acceptedOffers?.map((request) => (
                 <div key={request._id} className="accepted_card_conatainer">
                   <div className="helper_profile">
-                    <img src="/images/profile.png" alt="" />
+                    <img src={request?.userId?.profilePicture} alt="" />
                     <p style={{ fontWeight: "600" }}>{request?.userId?.name}</p>
                     <button>View Profile</button>
                   </div>

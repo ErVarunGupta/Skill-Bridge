@@ -10,6 +10,8 @@ import AcceptedRequests from "./pages/Dashboard/AcceptedRequests";
 import AcceptedOffers from "./pages/Dashboard/AcceptedOffers";
 import HelpForm from "./pages/Dashboard/HelpForm";
 import UpcomingSessions from "./pages/Dashboard/UpcomingSessions";
+import ProfileUpdate from "./components/ProfileUpdate";
+import ShowProfile from "./components/ShowProfile";
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);
@@ -27,6 +29,7 @@ function App() {
   const [description, setDescription] = useState("");
   const [showDateTime, setShowDateTime] = useState(false);
   const [dateTimeObj, setDateTimeObj] = useState(null);
+  const [user, setUser] = useState(null);
 
   const providerValues = {
     showRequestCard,
@@ -34,6 +37,7 @@ function App() {
     showOfferCard, setShowOfferCard,
     userProfile,
     setUserProfile,
+    user, setUser,
     pendingRequests,
     setPendingRequests,
     pendingRequest,
@@ -62,11 +66,13 @@ function App() {
           <Route path={"/login"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
           <Route path={"/dashboard"} element={<Dashboard />}>
-            <Route path="" element={<HelpForm />} />
+            <Route path="/dashboard/help" element={<HelpForm />} />
             <Route path="upcoming_sessions" element = {<UpcomingSessions/>}/>
             <Route path="accepted_requests" element={<AcceptedRequests />} />
             <Route path="accepted_offers" element={<AcceptedOffers />} />
           </Route>
+          <Route path="/update_profile" element={<ProfileUpdate/>}/>
+          <Route path="/show_profile" element={<ShowProfile />}/>
         </Routes>
       </MyContext.Provider>
     </>

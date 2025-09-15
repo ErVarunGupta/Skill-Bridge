@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react'
 import { MyContext } from '../../MyContext'
-import { declineOffer, getMyUpcomingSession } from '../../api/helpApi';
+import { declineOffer,useMyUpcomingSession } from '../../api/helpApi';
 import './AcceptedRequests.css'
 
 function UpcomingSessions() {
     const {setUpcomingSessions} = useContext(MyContext);
-    const {upcomingSessions} = getMyUpcomingSession();
+    const {upcomingSessions} = useMyUpcomingSession();
 
     useEffect(()=>{
         setUpcomingSessions(upcomingSessions);
-        console.log(upcomingSessions)
+        // console.log(upcomingSessions)
     },[upcomingSessions])
   return (
     <div className="offers_wrapper_container">
@@ -20,7 +20,7 @@ function UpcomingSessions() {
           {upcomingSessions?.map((request) => (
             <div key={request._id} className="accepted_card_conatainer">
               <div className="helper_profile">
-                <img src="/images/profile.png" alt="" />
+                <img src={request?.helperId?.profilePicture} alt="" />
                 <p style={{ fontWeight: "600" }}>{request?.helperId?.name}</p>
                 <button>View Profile</button>
               </div>
@@ -46,6 +46,9 @@ function UpcomingSessions() {
                   </span>
                 </p>
                 <div className="action_buttons">
+                  <button style={{ background: "#6c757d", color: "#fff" }}>
+                    Chat
+                  </button>
                   <button style={{ background: "blue", color: "#fff" }}>
                     Join
                   </button>
