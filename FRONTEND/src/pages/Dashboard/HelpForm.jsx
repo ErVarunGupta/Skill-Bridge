@@ -25,9 +25,11 @@ function HelpForm() {
 
       
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       const { success, message } = result;
       if(success){
+        setDescription("")
+        setTitle("")
         alert("Request post successfully!");
         window.location.reload();
       }

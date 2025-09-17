@@ -175,7 +175,7 @@ export const getAcceptedOffers = async (req, res) => {
       });
     }
 
-    const user = await Profile.findOne({userId});
+    const user = await Profile.findOne({ userId });
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -206,27 +206,29 @@ export const getUpcomingSession = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    let myOffers = await HelpRequest.find({
+    let sessions = await HelpRequest.find({
       ackStatus: "accepted",
       status: "accepted",
-    }).populate("helperId", "name username email profilePicture");
+    })
+      .populate("helperId", "name username email profilePicture")
+      .populate("userId", "name username email profilePicture");
 
-    console.log(myOffers);
+    console.log(sessions);
 
-    if (myOffers.length === 0) {
+    if (sessions.length === 0) {
       return res.status(404).json({
         message: "Requests not found!",
         success: false,
       });
     }
 
-    myOffers = myOffers.filter(
+    sessions = sessions.filter(
       (myOffer) =>
-        myOffer.userId.toString() === userId.toString() ||
+        myOffer.userId._id.toString() === userId.toString() ||
         myOffer.helperId._id.toString() === userId.toString()
     );
 
-    if (myOffers.length === 0) {
+    if (sessions.length === 0) {
       return res.status(404).json({
         message: "No upcoming sessions for this user!",
         success: false,
@@ -235,7 +237,7 @@ export const getUpcomingSession = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      myOffers,
+      sessions,
     });
   } catch (error) {
     return res.status(500).json({
@@ -442,6 +444,32 @@ export const completeRequest = async (req, res) => {
 
     return res.status(200).json({
       message: "Request completed!",
+      success: true,
+      request,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
+export const getRequestById = async (req, res) => {
+  try {
+    const { requestId } = req.params;
+    const request = await HelpRequest.findById(requestId)
+      .populate("helperId", "name username email profilePicture")
+      .populate("userId", "name username email profilePicture");
+
+    if (!request) {
+      return res.status(404).json({
+        message: "Request not found!",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
       success: true,
       request,
     });

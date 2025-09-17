@@ -4,14 +4,15 @@ import { useContext } from "react";
 import { MyContext } from "../MyContext";
 import { getUserProfile, uploadProfilePicture } from "../api/authApi";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ShowProfile = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const decoded = jwtDecode(localStorage.getItem("token"));
-  const { userProfile } = getUserProfile(decoded.id);
+  const {userId} = useParams();
+  const { userProfile } = getUserProfile(userId);
 
-  console.log(userProfile?.profile);
+  // console.log(userProfile?.profile);
 
   if (!userProfile) return <p>Loading profile...</p>;
   const profile = userProfile?.profile;
@@ -28,7 +29,7 @@ const ShowProfile = () => {
           <p className="profile-email">@{profile.userId?.username}</p>
           <p className="profile-email">{profile.userId?.email}</p>
           </div>
-          <button onClick={()=> navigate("/update_profile")}>Update Profile</button>
+          {userId.toString() === decoded.id.toString() && <button onClick={()=> navigate("/update_profile")}>Update Profile</button>}
         </div>
       </div>
 

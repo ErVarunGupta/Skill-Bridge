@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext } from "react";
 import { MyContext } from "../MyContext";
+import { jwtDecode } from "jwt-decode";
 
 function Navbar() {
   const [showProfile, setShowProfile] = useState(false);
@@ -11,7 +12,7 @@ function Navbar() {
     <div className="navbar">
       <div className="left_navbar">
         <div className="skill_bridge_icon">
-          <NavLink to="/dashboard" className="skill_bridge_link"
+          <NavLink to="/dashboard/home" className="skill_bridge_link"
           >
             Skill Bridge
           </NavLink>
@@ -19,7 +20,7 @@ function Navbar() {
       </div>
       <div className="right_navbar">
         <p>
-          <NavLink to="/dashboard/help" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink to="/dashboard/home" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
             Home
           </NavLink>
         </p>
@@ -56,6 +57,8 @@ function Navbar() {
 
 export const ProfileCard = () => {
   const navigate = useNavigate();
+  const decoded = jwtDecode(localStorage.getItem('token'));
+  const userId = decoded.id;
   // const {userProfile} = useContext(MyContext);
   // console.log(userProfile)
 
@@ -67,9 +70,9 @@ export const ProfileCard = () => {
   };
   return (
     <div className="profile_Card">
-      <p><NavLink to="/show_profile" style={{textDecoration:'none', color: '#000'}}>User Profile</NavLink></p>
-      {/* <p><Link to="/update_profile" style={{textDecoration:'none', color: '#000'}}>Edit Profile</Link></p> */}
-      <p onClick={logout}>Log Out</p>
+      <p><i class="fa-solid fa-user"></i><NavLink to={`/show_profile/${userId}`} style={{textDecoration:'none', color: '#000'}}>User Profile</NavLink></p>
+      <p><i class="fa-solid fa-book"></i>Study Materials</p>
+      <p onClick={logout}><i class="fa-solid fa-right-from-bracket"></i>Log Out</p>
     </div>
   );
 };

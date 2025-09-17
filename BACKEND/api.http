@@ -14,8 +14,8 @@ POST http://localhost:8080/api/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email":"user1@gmail.com",
-  "password":"user1"
+  "email":"varungupta0994@gmail.com",
+  "password":"varun"
 }
 
 ### get User
@@ -50,7 +50,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzE5N2YwMTlmMDEz
 ###
 GET http://localhost:8080/api/get_all_requests HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzc2MDcxMCwiZXhwIjoxNzU3ODQ3MTEwfQ.vp70Kth68eOzkbO9k0tU_VrlKXLzOsdRmM6iK7LhuFY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzgwN2IyODkxNzYxNjFkNzU3OTM2NSIsImlhdCI6MTc1Nzk0OTA4OSwiZXhwIjoxNzU4MDM1NDg5fQ.Qlqdsow-CGb6l9DxP3n_OsXEvVoWsvtPUOjWpb3dRkA
 
 
 

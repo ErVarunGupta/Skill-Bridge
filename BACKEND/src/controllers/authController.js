@@ -37,10 +37,9 @@ export const Register = async(req, res)=>{
     return res.status(200).json({
       message: "User registered successfully!",
       success: true,
-      name,
-      username,
-      email,
-      token,
+      user,
+      username: user.username,
+      token
     });
   } catch (error) {
     res.status(500).json({
@@ -81,8 +80,9 @@ export const Login = async(req, res)=>{
     return res.status(200).json({
       message: "User successfully logged in!",
       success: true,
-      email,
-      token,
+      user: existingUser,
+      username: existingUser.username,
+      token
     });
   } catch (error) {
     return res.status(500).json({
@@ -119,7 +119,7 @@ export const getUserProfile = async(req, res)=>{
 
 export const updateUserProfile = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, username } = req.body;
     const userId = req.user.id;
 
     const user = await User.findById(userId);
@@ -141,9 +141,8 @@ export const updateUserProfile = async (req, res) => {
       user.email = email;
     }
 
-    if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.password = hashedPassword;
+    if (username) {
+      user.username = username;
     }
 
     if (name) {

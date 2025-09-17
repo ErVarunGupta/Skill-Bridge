@@ -64,10 +64,10 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(197, 235, 247);
-    width: 10rem;
+    width: 12rem;
     padding: 1rem;
     border-radius: .5rem;
-    gap: 1rem;
+    gap: 1.4rem;
     align-items: center;
 }
 
@@ -75,16 +75,16 @@
     display: flex;
     align-items: center;
     text-align: center;
-    padding: .5rem;
     width: 100%;
-    background-color: aliceblue;
+    background-color: transparent;
     border-radius: .5rem;
     cursor: pointer;
-    transition: .3s;
+    transition: .2s;
+    gap: .5rem;
 }
 
 .profile_Card p:hover{
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 

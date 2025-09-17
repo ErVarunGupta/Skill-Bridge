@@ -114,7 +114,6 @@ function Dashboard() {
                         setShowOfferCard(true);
                         setPendingRequest(request);
                         setMyOffer(request);
-                        console.log(request);
                       }}
                     ></i>
                   </span>
