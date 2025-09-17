@@ -12,6 +12,7 @@ import {
   getAllPendingRequests,
   getAllRequests,
   getMyRequests,
+  getRequestById,
   getUpcomingSession,
 } from "../controllers/helpController.js";
 
@@ -19,6 +20,7 @@ const router = Router();
 
 router.post("/create_request", authValidation, createHelpRequest);
 router.get("/get_all_requests", authValidation, getAllRequests);
+router.get("/get_request_by_id/:requestId", authValidation, getRequestById);
 router.get("/get_all_pending_request", authValidation, getAllPendingRequests);
 router.get("/get_my_requests", authValidation, getMyRequests);
 router.get("/get_my_accepted_requests", authValidation, getAcceptedRequests);

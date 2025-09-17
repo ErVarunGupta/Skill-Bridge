@@ -14,7 +14,7 @@ const ProfileUpdate = () => {
     userId: {
       name: "",
       email: "",
-      password: "",
+      username: "",
     },
     bio: "",
     skills: [],
@@ -26,7 +26,7 @@ const ProfileUpdate = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    password: "",
+    username: "",
   });
 
   const [newSkill, setNewSkill] = useState("");
@@ -198,11 +198,18 @@ const ProfileUpdate = () => {
             placeholder="Name"
             value={user?.name}
           />
-          <input
+          {/* <input
             onChange={handleUserChange}
             name="password"
             type="password"
             placeholder="Password"
+          /> */}
+          <input
+            onChange={handleUserChange}
+            name="username"
+            type="username"
+            placeholder="Username"
+            value={user?.username}
           />
         </div>
         <div className="email_form">

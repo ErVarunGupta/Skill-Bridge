@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./auth.styles.css";
 import { Link, useNavigate } from "react-router-dom";
+import { MyContext } from "../../MyContext";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
@@ -25,11 +26,14 @@ function Login() {
       });
 
       const data = await response.json();
+      // console.log(data);
 
-      const { message, success, token } = data;
+      const { message, success, token, username } = data;
+      // console.log(token)
       if (success) {
         alert("Loggined Successfully!");
         localStorage.setItem('token', token)
+        localStorage.setItem('username',username )
         setTimeout(()=>{
             navigate("/dashboard")
         }, 1000)

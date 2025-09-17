@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { MyContext } from "../MyContext";
+import { jwtDecode } from "jwt-decode";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
@@ -8,6 +9,8 @@ export const usePendingRequests = () => {
   const fetchRequests = async () => {
     try {
       const url = `${API_URL}/get_all_pending_request`;
+      const decoded = jwtDecode(localStorage.getItem('token'));
+      const userId = decoded.id;
 
       const response = await fetch(url, {
         method: "GET",
@@ -20,9 +23,12 @@ export const usePendingRequests = () => {
       const result = await response.json();
       // console.log(result.requests);
 
+      let offers = result.requests;
+      offers = offers.filter((offer) => offer.userId._id !== userId);
+
       const { success, message } = result;
       if (success) {
-        setPendingRequests(result.requests);
+        setPendingRequests(offers);
       }
     } catch (error) {
       console.log("Error during fetching pending requests: ", error.message);
@@ -154,7 +160,7 @@ export const useMyUpcomingSession = () => {
 
       const { success, message } = result;
       if (success) {
-        setUpcomingSessions(result.myOffers);
+        setUpcomingSessions(result.sessions);
       }
     } catch (error) {
       console.log("Error during fetching upcoming sessions: ", error.message);
@@ -166,6 +172,25 @@ export const useMyUpcomingSession = () => {
   }, []);
 
   return { upcomingSessions };
+};
+
+export const getRequestById = async ({requestId}) => {
+  try {
+    const url = `${API_URL}/get_request_by_id/${requestId}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log("Error during fetching request by id: ", error.message);
+    return null;
+  }
 };
 
 export const acceptRequest = async (pendingRequestId, dateTimeObj) => {
@@ -287,3 +312,6 @@ export const handleAckAccept = async(requestId, status)=>{
     console.log("Error during deleting request : ", error.message);
   }
 }
+
+
+

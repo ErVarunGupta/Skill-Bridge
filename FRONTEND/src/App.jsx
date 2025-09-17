@@ -12,6 +12,7 @@ import HelpForm from "./pages/Dashboard/HelpForm";
 import UpcomingSessions from "./pages/Dashboard/UpcomingSessions";
 import ProfileUpdate from "./components/ProfileUpdate";
 import ShowProfile from "./components/ShowProfile";
+import Chat from "./components/ChatBox";
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);
@@ -55,7 +56,7 @@ function App() {
     acceptedOffers, setAcceptedOffers,
     upcomingSessions, setUpcomingSessions,
     showDateTime, setShowDateTime,
-    dateTimeObj, setDateTimeObj
+    dateTimeObj, setDateTimeObj,
   };
 
   return (
@@ -66,13 +67,14 @@ function App() {
           <Route path={"/login"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
           <Route path={"/dashboard"} element={<Dashboard />}>
-            <Route path="/dashboard/help" element={<HelpForm />} />
+            <Route path="/dashboard/home" element={<HelpForm />} />
             <Route path="upcoming_sessions" element = {<UpcomingSessions/>}/>
             <Route path="accepted_requests" element={<AcceptedRequests />} />
             <Route path="accepted_offers" element={<AcceptedOffers />} />
           </Route>
           <Route path="/update_profile" element={<ProfileUpdate/>}/>
-          <Route path="/show_profile" element={<ShowProfile />}/>
+          <Route path="/show_profile/:userId" element={<ShowProfile />}/>
+          <Route path="/user/chat/:requestId" element={<Chat />}/>
         </Routes>
       </MyContext.Provider>
     </>
