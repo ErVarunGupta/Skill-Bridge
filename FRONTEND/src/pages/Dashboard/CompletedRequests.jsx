@@ -89,32 +89,7 @@ function CompletedRequests() {
                         {request.scheduledTime.Time}
                       </span>
                     </p>
-                    <div className="action_buttons">
-                      <button
-                        style={{ background: "#6c757d", color: "#fff" }}
-                        onClick={() => {
-                          navigate(`/user/chat/${request?._id}`);
-                          // localStorage.setItem('helperId', request?.helperId._id);
-                          // setConnectedUsers(request);
-                        }}
-                      >
-                        Chat
-                      </button>
-                      <button
-                        style={{ background: "blue", color: "#fff" }}
-                        onClick={() => {
-                          navigate(`/user/video_call/${request?._id}`);
-                        }}
-                      >
-                        Join
-                      </button>
-                      <button
-                        onClick={() => declineOffer(request._id)}
-                        style={{ background: "red", color: "#fff" }}
-                      >
-                        Decline
-                      </button>
-                    </div>
+                    <p>Status: <span style={{color: "green"}}>Completed</span></p>
                   </div>
                 </div>
               );
