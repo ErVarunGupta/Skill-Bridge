@@ -30,11 +30,11 @@ function Register() {
 
       const data = await response.json();
 
-      const { message, success, token, username } = data;
+      const { message, success, token } = data;
       if (success) {
         alert("Registered successfully!")
         localStorage.setItem('token',token)
-        localStorage.setItem('username',username)
+        // localStorage.setItem('username',username)
         setTimeout(()=>{
             navigate("/dashboard")
         }, 1000)

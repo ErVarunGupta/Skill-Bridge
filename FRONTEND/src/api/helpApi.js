@@ -311,9 +311,9 @@ export const handleAckAccept = async (requestId, status) => {
   }
 };
 
-export const completeReqeust = async ( requestId ) => {
+export const completeReqeust = async (requestId) => {
   try {
-    console.log(requestId)
+    console.log(requestId);
     const url = `${API_URL}/complete_request/${requestId}`;
 
     const response = await fetch(url, {
@@ -333,6 +333,7 @@ export const completeReqeust = async ( requestId ) => {
 
 export const useCompletedRequests = () => {
   const { completedRequests, setCompletedRequests } = useContext(MyContext);
+  const userId = jwtDecode(localStorage.getItem("token")).id;
   const fetchRequests = async () => {
     try {
       const url = `${API_URL}/get_completed_requests`;
@@ -350,6 +351,13 @@ export const useCompletedRequests = () => {
 
       const { success, message } = result;
       if (success) {
+      
+        result.completedRequests = result.completedRequests.filter(
+          (request) =>
+            request.userId?._id?.toString() === userId ||
+            request.helperId?._id?.toString() === userId
+        );
+
         setCompletedRequests(result.completedRequests || []);
       }
     } catch (error) {
