@@ -9,7 +9,7 @@ export const usePendingRequests = () => {
   const fetchRequests = async () => {
     try {
       const url = `${API_URL}/get_all_pending_request`;
-      const decoded = jwtDecode(localStorage.getItem('token'));
+      const decoded = jwtDecode(localStorage.getItem("token"));
       const userId = decoded.id;
 
       const response = await fetch(url, {
@@ -90,7 +90,7 @@ export const useMyAcceptedReqeusts = () => {
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       const { success, message } = result;
       if (success) {
@@ -123,7 +123,7 @@ export const useMyAcceptedOffers = () => {
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       const { success, message } = result;
       if (success) {
@@ -174,14 +174,14 @@ export const useMyUpcomingSession = () => {
   return { upcomingSessions };
 };
 
-export const getRequestById = async ({requestId}) => {
+export const getRequestById = async ({ requestId }) => {
   try {
     const url = `${API_URL}/get_request_by_id/${requestId}`;
     const response = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': "application/json",
-        Authorization: localStorage.getItem("token")
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
       },
     });
 
@@ -211,7 +211,7 @@ export const acceptRequest = async (pendingRequestId, dateTimeObj) => {
     });
 
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
 
     const { success, message } = result;
     if (success) {
@@ -227,7 +227,7 @@ export const acceptRequest = async (pendingRequestId, dateTimeObj) => {
 
 export const declineOffer = async (requestId) => {
   try {
-    console.log(requestId);
+    // console.log(requestId);
     const url = `${API_URL}/decline_request/${requestId}`;
 
     const response = await fetch(url, {
@@ -239,7 +239,7 @@ export const declineOffer = async (requestId) => {
     });
 
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
 
     const { success, message } = result;
     if (success) {
@@ -266,13 +266,13 @@ export const deleteRequest = async (requestId) => {
     });
 
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
 
     const { success, message } = result;
-    if(success){
+    if (success) {
       alert("Request deleted successfull!");
       window.location.reload();
-    }else{
+    } else {
       alert(message);
     }
   } catch (error) {
@@ -280,11 +280,9 @@ export const deleteRequest = async (requestId) => {
   }
 };
 
-
-
-export const handleAckAccept = async(requestId, status)=>{
-    try {
-      // console.log(status);
+export const handleAckAccept = async (requestId, status) => {
+  try {
+    // console.log(status);
     const url = `${API_URL}/acknoledge_helper/${requestId}`;
 
     const response = await fetch(url, {
@@ -294,24 +292,74 @@ export const handleAckAccept = async(requestId, status)=>{
         Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        ackStatus:status
-      })
+        ackStatus: status,
+      }),
     });
 
     const result = await response.json();
     console.log(result);
 
     const { success, message } = result;
-    if(success){
+    if (success) {
       alert(message);
       window.location.reload();
-    }else{
+    } else {
       alert(message);
     }
   } catch (error) {
     console.log("Error during deleting request : ", error.message);
   }
-}
+};
 
+export const completeReqeust = async ( requestId ) => {
+  try {
+    console.log(requestId)
+    const url = `${API_URL}/complete_request/${requestId}`;
 
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    });
 
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.log("Error during completing request : ", error.message);
+  }
+};
+
+export const useCompletedRequests = () => {
+  const { completedRequests, setCompletedRequests } = useContext(MyContext);
+  const fetchRequests = async () => {
+    try {
+      const url = `${API_URL}/get_completed_requests`;
+
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+
+      const result = await response.json();
+      // console.log(result);
+
+      const { success, message } = result;
+      if (success) {
+        setCompletedRequests(result.completedRequests || []);
+      }
+    } catch (error) {
+      console.log("Error during fetching upcoming sessions: ", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+
+  return { completedRequests };
+};
