@@ -11,6 +11,7 @@ import {
   getAcceptedRequests,
   getAllPendingRequests,
   getAllRequests,
+  getCompletedRequests,
   getMyRequests,
   getRequestById,
   getUpcomingSession,
@@ -31,5 +32,6 @@ router.put("/accept_request/:requestId", authValidation, acceptRequest);
 router.put("/decline_request/:requestId", authValidation, declineRequest);
 router.put("/acknoledge_helper/:requestId", authValidation, acknoledgeHelper);
 router.put("/complete_request/:requestId", authValidation, completeRequest);
+router.get("/get_completed_requests", authValidation, getCompletedRequests);
 
 export default router;

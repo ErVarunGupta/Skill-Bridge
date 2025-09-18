@@ -13,6 +13,9 @@ import UpcomingSessions from "./pages/Dashboard/UpcomingSessions";
 import ProfileUpdate from "./components/ProfileUpdate";
 import ShowProfile from "./components/ShowProfile";
 import Chat from "./components/ChatBox";
+import VideoCall from "./components/VideoCall";
+import FeedbackForm from "./pages/FeedbackForm/FeedbackForm";
+import CompletedRequests from "./pages/Dashboard/CompletedRequests";
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);
@@ -25,6 +28,7 @@ function App() {
   const [acceptedRequests, setAcceptedRequests] = useState([]);
   const [acceptedOffers, setAcceptedOffers] = useState([]);
   const [upcomingSessions, setUpcomingSessions] = useState([]);
+  const [completedRequests, setCompletedRequests] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -57,6 +61,7 @@ function App() {
     upcomingSessions, setUpcomingSessions,
     showDateTime, setShowDateTime,
     dateTimeObj, setDateTimeObj,
+    completedRequests, setCompletedRequests
   };
 
   return (
@@ -71,10 +76,13 @@ function App() {
             <Route path="upcoming_sessions" element = {<UpcomingSessions/>}/>
             <Route path="accepted_requests" element={<AcceptedRequests />} />
             <Route path="accepted_offers" element={<AcceptedOffers />} />
+            <Route path="completed_requests" element={<CompletedRequests />} />
           </Route>
           <Route path="/update_profile" element={<ProfileUpdate/>}/>
           <Route path="/show_profile/:userId" element={<ShowProfile />}/>
           <Route path="/user/chat/:requestId" element={<Chat />}/>
+          <Route path="/user/video_call/:requestId" element={<VideoCall />}/>
+          <Route path="/feedback_form/:requestId" element={<FeedbackForm />}/>
         </Routes>
       </MyContext.Provider>
     </>

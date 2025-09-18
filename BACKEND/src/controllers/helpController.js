@@ -480,3 +480,31 @@ export const getRequestById = async (req, res) => {
     });
   }
 };
+
+export const getCompletedRequests = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const completedRequests = await HelpRequest.find({ status: "completed" })
+      .populate("helperId", "name username email profilePicture")
+      .populate("userId", "name username email profilePicture");
+
+    if (!completedRequests) {
+      return res.status(404).json({
+        message: "No any request completed!",
+        success: false,
+      });
+    }
+
+    // console.log(completeRequest);
+
+    return res.status(200).json({
+      success: true,
+      completedRequests,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      success: false,
+    });
+  }
+};

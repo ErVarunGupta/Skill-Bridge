@@ -15,16 +15,16 @@ export const updateProfile = async (req, res) => {
       });
     }
 
-    const profile_to_updata = await Profile.findOne({ userId });
+    const profile_to_update = await Profile.findOne({ userId });
 
-    Object.assign(profile_to_updata, data);
+    Object.assign(profile_to_update, data);
 
-    await profile_to_updata.save();
+    await profile_to_update.save();
 
     return res.status(201).json({
       success: true,
       message: "Profile created successfully",
-      profile_to_updata,
+      profile_to_update,
     });
   } catch (error) {
     return res.status(500).json({
@@ -86,47 +86,6 @@ export const getAllUserProfile = async (req, res) => {
   }
 };
 
-//  Update Rating
-export const updateRating = async (req, res) => {
-  try {
-    const { profileId } = req.params;
-    const { rating } = req.body;
-
-    if (rating < 1 || rating > 5) {
-      return res.status(400).json({
-        success: false,
-        message: "Rating must be between 1 and 5",
-      });
-    }
-
-    const profile = await Profile.findById(profileId);
-    if (!profile) {
-      return res.status(404).json({
-        success: false,
-        message: "Profile not found",
-      });
-    }
-
-    const newTotalReviews = profile.totalReviews + 1;
-    const newAverageRating = (profile.averageRating * profile.totalReviews + rating) / newTotalReviews;
-
-    profile.averageRating = newAverageRating;
-    profile.totalReviews = newTotalReviews;
-
-    await profile.save();
-
-    return res.status(200).json({
-      success: true,
-      message: "Rating updated successfully",
-      profile,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
 
 //  Delete Profile
 export const deleteProfile = async (req, res) => {

@@ -57,18 +57,31 @@ const profileSchema = new Schema({
     type: [educationSchema],
     default: [],
   },
-   totalReviews: {
+  totalReviews: {
     type: Number,
-    default: 0
-  },
-  totalRatings: {
-    type: Number,
-    default: 0
+    default: 0,
   },
   averageRating: {
     type: Number,
     default: 0,
   },
+  comments: [
+    {
+      name: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+      comment: {
+        type: String,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+    },
+  ],
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

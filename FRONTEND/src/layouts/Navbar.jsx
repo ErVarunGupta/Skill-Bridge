@@ -43,6 +43,12 @@ function Navbar() {
           </NavLink>
         </p>
         <hr />
+        <p>
+          <NavLink to="/dashboard/completed_requests" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+            Completed Requests
+          </NavLink>
+        </p>
+        <hr />
         <div
           className="profile_icon"
           onClick={() => setShowProfile(!showProfile)}

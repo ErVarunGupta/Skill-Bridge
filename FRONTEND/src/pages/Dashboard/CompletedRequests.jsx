@@ -1,28 +1,30 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../MyContext";
-import { declineOffer, useMyUpcomingSession } from "../../api/helpApi";
+import { declineOffer,  useCompletedRequests } from "../../api/helpApi";
 import "./AcceptedRequests.css";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-function UpcomingSessions() {
+function CompletedRequests() {
   const navigate = useNavigate();
-  const { upcomingSessions } = useMyUpcomingSession();
+
+  const { completedRequests } = useCompletedRequests();
+//   console.log(completedRequests);
 
   const userId = jwtDecode(localStorage.getItem("token")).id;
 
   return (
     <div className="offers_wrapper_container">
-      {upcomingSessions.length === 0 && (
-        <h2 style={{ marginTop: "30%" }}>Upcoming Sessions Not Found!</h2>
-      )}
-      {upcomingSessions.length > 0 && (
+      {completedRequests.length == 0 && (
+        <h2 style={{ marginTop: "30%" }}>Completed Requests Not Found!</h2>
+      )}{" "}
+      {completedRequests.length > 0 && (
         <>
           <p style={{ fontSize: "1.3rem", fontWeight: "600" }}>
             Upcoming Sessions
           </p>
           <div className="accepted_container">
-            {upcomingSessions?.map((request) => {
+            {completedRequests?.map((request) => {
               return (
                 <div key={request._id} className="accepted_card_conatainer">
                   <div className="helper_profile">
@@ -55,7 +57,7 @@ function UpcomingSessions() {
                     </div>
                     <button
                       onClick={() => {
-                        navigate(`/show_profile/${request?.helperId._id}`)
+                        navigate(`/show_profile/${request?.helperId._id}`);
                       }}
                     >
                       View Profile
@@ -98,9 +100,10 @@ function UpcomingSessions() {
                       >
                         Chat
                       </button>
-                      <button style={{ background: "blue", color: "#fff" }}
-                        onClick={()=>{
-                          navigate(`/user/video_call/${request?._id}`)
+                      <button
+                        style={{ background: "blue", color: "#fff" }}
+                        onClick={() => {
+                          navigate(`/user/video_call/${request?._id}`);
                         }}
                       >
                         Join
@@ -123,4 +126,4 @@ function UpcomingSessions() {
   );
 }
 
-export default UpcomingSessions;
+export default CompletedRequests;
