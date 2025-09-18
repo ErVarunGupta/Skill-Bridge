@@ -76,6 +76,12 @@ const profileSchema = new Schema({
       comment: {
         type: String,
       },
+      title: {
+        type: String
+      },
+      description:{
+        type: String
+      },
       createdAt: {
         type: Date,
         default: Date.now
