@@ -83,6 +83,8 @@ export default function FeedbackForm() {
       name: name.trim() || "Anonymous",
       email: email.trim() || null,
       comment: comment.trim(),
+      title: request?.title,
+      description: request?.description,
       createdAt: new Date().toISOString(),
     };
 
