@@ -24,7 +24,10 @@ export const updateRating = async (req, res) => {
     }
 
     const newTotalReviews = profile.totalReviews + 1;
-    const newAverageRating = (profile.averageRating * profile.totalReviews + rating) / newTotalReviews;
+    const newAverageRating = 0;
+    if(newTotalReviews > 0){
+      newAverageRating = (profile.averageRating * profile.totalReviews + rating) / newTotalReviews;
+    }
 
     profile.averageRating = newAverageRating;
     profile.totalReviews = newTotalReviews;
