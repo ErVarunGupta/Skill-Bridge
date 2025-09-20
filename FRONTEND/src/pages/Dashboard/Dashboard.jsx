@@ -13,6 +13,7 @@ import {
 } from "../../api/helpApi";
 import { Link, Outlet} from "react-router-dom";
 import CalendarInput from "./ScheduleForm";
+import Footer from "../../layouts/Footer";
 
 
 function Dashboard() {
@@ -102,6 +103,8 @@ function Dashboard() {
               }}>Submit</button>
             </div>
           </div>}
+
+          
         </div>
 
         <div className="right_dashboard_container ">
@@ -127,6 +130,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
@@ -183,7 +187,7 @@ const OfferCard = () => {
   return (
     <>
       <div className="offer_card_container">
-        <div className="cross" onClick={() => setShowOfferCard(false)}>
+        <div className="cross" onClick={() => {setShowOfferCard(false); setShowDateTime(false)}}>
           <i className="fa-solid fa-xmark"></i>
         </div>
         <img src="/images/profile.png" alt="" />
