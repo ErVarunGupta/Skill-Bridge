@@ -7,7 +7,7 @@ import {  getUserProfile } from "../../api/authApi";
 import {
   acceptRequest,
   declineOffer,
-  deleteRequest,
+  deleteRequestById,
   useMyRequests,
   usePendingRequests,
 } from "../../api/helpApi";
@@ -153,6 +153,12 @@ const RequestCard = () => {
     setShowRequestCard(false);
   }
 
+  const deleteRequest = (requestId) =>{
+    const updatedRequests = deleteRequestById(requestId);
+    setFilterRequests(updatedRequests);
+    setShowRequestCard(false);
+  }
+
   
   return (
     <>
@@ -169,7 +175,11 @@ const RequestCard = () => {
             {myRequest?.status}
           </span>
         </p>
-        <button onClick={()=>filterMyReqeust(myRequest._id)}>Remove</button>
+        <button onClick={()=>{
+          myRequest.status === "completed" 
+          ? filterMyReqeust(myRequest._id)
+          : deleteRequest(myRequest._id)
+        }}>Remove</button>
         
       </div>
     </>

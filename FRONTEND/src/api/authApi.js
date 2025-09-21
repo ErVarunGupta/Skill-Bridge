@@ -1,38 +1,42 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../MyContext";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const getUsersProfile = () => {
-  const {users, setUsers} = useContext(MyContext);
-  const fetchUsers = async () => {
-    try {
-      const url = `${API_URL}/users`;
-      const response = await fetch(url, {
-        method: 'GET', 
-        headers: {
-          "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token")
+export const getUsersProfile =  () => {
+  const { users, setUsers } = useContext(MyContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const url = `${API_URL}/users`;
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        const { success, message } = result;
+        if (success) {
+          setUsers(result.users || []);
         }
-      });
-
-      const result = await response.json();
-      // console.log(result);
-
-      const {success, message} = result;
-      if(success){
-        setUsers(result);
+      } catch (error) {
+        console.log("Error during fetching users profile: ", error.message);
+        setUsers([]);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.log("Error during fetching users profile: ", error.message);
-    }
-  };
+    };
+    fetchUsers();
+  }, [setUsers]);
 
-  useEffect(()=>{
-    fetchUsers()
-  },[])
-
-  return {users};
+  return { users, loading };
 };
 
 export const getUserProfile = (userId) => {
