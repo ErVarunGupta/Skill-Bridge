@@ -12,45 +12,75 @@ function Navbar() {
     <div className="navbar">
       <div className="left_navbar">
         <div className="skill_bridge_icon">
-          <NavLink to="/dashboard" className="skill_bridge_link"
-          >
+          <NavLink to="/dashboard" className="skill_bridge_link">
             Skill Bridge
           </NavLink>
         </div>
       </div>
       <div className="right_navbar">
         <p>
-          <NavLink to="/dashboard" end className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink
+            to="/dashboard"
+            end
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
             Home
           </NavLink>
         </p>
         <hr />
         <p>
-          <NavLink to="/dashboard/post" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
-            Post Request
+          <NavLink
+            to="/dashboard/post"
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
+            Ask Doubts
           </NavLink>
         </p>
         <hr />
         <p>
-          <NavLink to="/dashboard/upcoming_sessions" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink
+            to="/dashboard/upcoming_sessions"
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
             Upcoming Session
           </NavLink>
         </p>
         <hr />
         <p>
-          <NavLink to="/dashboard/accepted_requests" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink
+            to="/dashboard/accepted_requests"
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
             Accepted Requests
           </NavLink>
         </p>
         <hr />
         <p>
-          <NavLink to="/dashboard/accepted_offers" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink
+            to="/dashboard/accepted_offers"
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
             Accepted Offers
           </NavLink>
         </p>
         <hr />
         <p>
-          <NavLink to="/dashboard/completed_requests" className={({isActive}) => isActive? "nav_links active": "nav_links deactive"}>
+          <NavLink
+            to="/dashboard/completed_requests"
+            className={({ isActive }) =>
+              isActive ? "nav_links active" : "nav_links deactive"
+            }
+          >
             Completed Requests
           </NavLink>
         </p>
@@ -60,7 +90,7 @@ function Navbar() {
           onClick={() => setShowProfile(!showProfile)}
         >
           {/* <i className="fa-solid fa-user"></i> */}
-          <img src={localStorage.getItem('profilePicture')} alt="" />
+          <img src={localStorage.getItem("profilePicture")} alt="" />
         </div>
       </div>
       {showProfile && <ProfileCard />}
@@ -70,22 +100,35 @@ function Navbar() {
 
 export const ProfileCard = () => {
   const navigate = useNavigate();
-  const decoded = jwtDecode(localStorage.getItem('token'));
+  const decoded = jwtDecode(localStorage.getItem("token"));
   const userId = decoded.id;
   // const {userProfile} = useContext(MyContext);
   // console.log(userProfile)
 
   const logout = () => {
     localStorage.clear();
-    setTimeout(()=>{
-      navigate("/login")
-    },1000);
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
   return (
     <div className="profile_Card">
-      <p><i class="fa-solid fa-user"></i><NavLink to={`/show_profile/${userId}`} style={{textDecoration:'none', color: '#000'}}>User Profile</NavLink></p>
-      <p><i class="fa-solid fa-book"></i>Study Materials</p>
-      <p onClick={logout}><i class="fa-solid fa-right-from-bracket"></i>Log Out</p>
+      <p>
+        <i class="fa-solid fa-user"></i>
+        <NavLink
+          to={`/show_profile/${userId}`}
+          style={{ textDecoration: "none", color: "#000" }}
+        >
+          User Profile
+        </NavLink>
+      </p>
+      <p>
+        <NavLink to="/study_stack" style={{textDecoration:'none', color: '#000'}}><i class="fa-solid fa-book" to="/material_details"></i> Study Materials</NavLink>
+      </p>
+      
+      <p onClick={logout}>
+        <i class="fa-solid fa-right-from-bracket"></i>Log Out
+      </p>
     </div>
   );
 };

@@ -1,0 +1,72 @@
+.library-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.library-container h3 {
+  color: #0077cc;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.library-container p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Grid Layout */
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Material Card */
+.material-card {
+  background: #f7f9fc;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image */
+.material-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Info Section */
+.material-info {
+  padding: 1rem;
+}
+
+.material-info h4 {
+  margin: 0;
+  color: #0077cc;
+}
+
+.material-info .category {
+  display: inline-block;
+  margin: 0.5rem 0;
+  padding: 0.2rem 0.5rem;
+  background: #e0f0ff;
+  color: #0077cc;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.material-info p {
+  color: #555;
+  font-size: 0.9rem;
+}

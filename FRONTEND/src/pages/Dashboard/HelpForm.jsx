@@ -39,7 +39,7 @@ function HelpForm() {
   };
   return (
     <div className='HelpForm'>
-        <p style={{fontSize: '1.3rem', fontWeight:'600'}}>Post Request</p>
+        <p style={{fontSize: '1.3rem', fontWeight:'600'}}>Ask a Doubt</p>
           <div className="request_input_form">
             <div className="title_button">
               <input

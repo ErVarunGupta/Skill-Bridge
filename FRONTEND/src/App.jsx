@@ -17,6 +17,10 @@ import VideoCall from "./components/VideoCall";
 import FeedbackForm from "./pages/FeedbackForm/FeedbackForm";
 import CompletedRequests from "./pages/Dashboard/CompletedRequests";
 import Home from "./pages/Dashboard/Home";
+import MyLibrary from "./pages/Materials/pages/MyLibrary";
+import UploadMaterial from "./pages/Materials/pages/UploadMaterial";
+import MaterialDetail from "./pages/Materials/pages/MaterialDetail";
+import StudyMaterialDashboard from "./pages/Materials/pages/StudyMaterialDashboard";
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);
@@ -100,6 +104,14 @@ function App() {
           <Route path="/user/chat/:requestId" element={<Chat />} />
           <Route path="/user/video_call/:requestId" element={<VideoCall />} />
           <Route path="/feedback_form/:requestId" element={<FeedbackForm />} />
+          {/* <Route path="/material_details" element={<MaterialDetail />} />
+          <Route path="/material_list" element={<MaterialList />} />
+          <Route path="/material_upload" element={<UploadMaterial />} /> */}
+
+          <Route path="/study_stack" element={<StudyMaterialDashboard />} />
+          <Route path="/material_upload" element={<UploadMaterial />} />
+          <Route path="/my-notes" element={<MyLibrary />} />
+          <Route path="/material/:id" element={<MaterialDetail />} />
         </Routes>
       </MyContext.Provider>
     </>
