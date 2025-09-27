@@ -101,7 +101,7 @@ body{
     list-style: none;
     width: 100%;
     padding: .3rem .5rem;
-    background-color: #f4f2ee;
+    
     border-radius: .5rem;
     font-size: .9rem;
     display: flex;
@@ -109,6 +109,7 @@ body{
 }
 .my_requests ul li:hover{
     transform: scaleY(1.1);
+    background-color: #f4f2ee;
 }
 
 .my_requests ul li i{
@@ -215,7 +216,7 @@ body{
 .all_pending_requests ul li{
     list-style: none;
     padding: .3rem .5rem;
-    background-color: #f4f2ee;
+    
     border-radius: .5rem;
     font-size: 0.9rem;
     display: flex;
@@ -223,6 +224,7 @@ body{
 }
 .all_pending_requests ul li:hover{
     transform: scaleY(1.1);
+    background-color: #f4f2ee;
 }
 .all_pending_requests ul li i{
     cursor: pointer;

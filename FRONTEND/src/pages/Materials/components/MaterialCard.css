@@ -1,0 +1,73 @@
+/* MaterialCard.css */
+
+.material-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 280px;
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.material-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.material-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.material-card strong {
+  color: #111;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.card-actions button,
+.card-actions a {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-actions button {
+  background: #4f46e5;
+  color: white;
+}
+
+.card-actions button:hover {
+  background: #3730a3;
+  transform: scale(1.05);
+}
+
+.card-actions a {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.card-actions a:hover {
+  background: #d1d1ff;
+  color: #1a1aff;
+  transform: scale(1.05);
+}

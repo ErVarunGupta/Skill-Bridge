@@ -169,7 +169,7 @@ function VideoCall() {
         if(isCaller){
           navigate(`/feedback_form/${request?._id}`)
         }else{
-          navigate(`/dashboard/home`)
+          navigate(`/dashboard`)
         }
       }}>Complete</button>
     </div>

@@ -1,0 +1,211 @@
+/* Container */
+.study-dashboard-container {
+    display: flex;
+    flex-direction: column;
+  font-family: "Inter", sans-serif;
+  background: #f9fafc;
+  color: #333;
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+/* Header Section */
+.dashboard-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #4a90e2, #0077cc);
+  color: white;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease-in-out;
+}
+
+.dashboard-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Material Grid */
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
+  margin-top: 1rem;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* AI Section */
+.ai-section {
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #0077cc;
+}
+
+.ai-section p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.ai-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+/* ghjkl */
+.ai-section {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #f0f8ff;
+  border-radius: 10px;
+}
+
+.ai-section h3 {
+  color: #0077cc;
+  margin-bottom: 0.5rem;
+}
+
+.ai-section p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Grid layout for AI recommendations */
+.ai-recommendations-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Individual AI Recommendation Card */
+.ai-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ai-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.ai-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.ai-info {
+  padding: 0.8rem;
+}
+
+.ai-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #0077cc;
+}
+
+.ai-info .category {
+  display: inline-block;
+  margin-top: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  background: #e0f0ff;
+  color: #0077cc;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+
+/* Buttons (for Download / Preview inside cards) */
+.button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-primary {
+  background: #0077cc;
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: #005fa3;
+}
+
+.button-secondary {
+  background: #f1f3f6;
+  color: #333;
+}
+
+.button-secondary:hover {
+  background: #e0e4eb;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+
+  .material-grid {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .ai-section {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+}
