@@ -18,7 +18,7 @@ function Navbar() {
   const logout = () => {
     localStorage.clear();
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
     }, 1000);
   };
 
@@ -234,7 +234,7 @@ export const ProfileCard = () => {
   const logout = () => {
     localStorage.clear();
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
     }, 1000);
   };
   return (
