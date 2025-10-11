@@ -10,6 +10,7 @@ import PreviewModal from "../components/PreviewModal";
 // import PreviewModal from "../components/PreviewModal";
 import demoData from "../utils/demoData";
 import FilterMenu from "../components/FilterMenu";
+import Footer from "../../../layouts/Footer";
 
 const StudyMaterialDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,6 +79,7 @@ const StudyMaterialDashboard = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

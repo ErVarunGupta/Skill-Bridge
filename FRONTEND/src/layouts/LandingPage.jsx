@@ -1,13 +1,14 @@
 import React from "react";
 import "./LandingPage.css";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function LandingPage() {
     const navigate = useNavigate()
   return (
     <div className="landing-container">
       {/* Navbar */}
-      <header className="navbar">
+      <header className="landing_page_navbar">
         <h1 className="logo">Skill Bridge</h1>
         <nav className="nav-links">
           <a href="#about">About</a>
@@ -53,9 +54,10 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <Footer/>
+      {/* <footer className="footer">
         <p>© {new Date().getFullYear()} HelpExchange. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }

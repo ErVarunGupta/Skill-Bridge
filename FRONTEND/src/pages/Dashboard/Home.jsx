@@ -3,21 +3,27 @@ import "./Home.css";
 import { MyContext } from "../../MyContext";
 import { getUsersProfile } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 function Home() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const { users, loading } = getUsersProfile();
 
+  const token = localStorage.getItem("token");
+  const id = jwtDecode(token).id;
+
   const filteredUsers = users?.filter((user) => {
     const username = user.userId?.username || "";
     const email = user.userId?.email || "";
     const name = user.userId?.name || "";
-    return (
-      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      email.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    if (user.userId._id !== id) {
+      return (
+        name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
   });
 
   return (

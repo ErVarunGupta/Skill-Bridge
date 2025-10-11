@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./auth.styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { MyContext } from "../../MyContext";
+import Footer from "../../layouts/Footer";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL ;
 
@@ -46,10 +47,21 @@ function Register() {
   };
   return (
     <>
+    <header className="landing_page_navbar">
+        <h1 className="logo">Skill Bridge</h1>
+        <nav className="nav-links">
+          <a href="#about">About</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+          <button className="signin-btn" onClick={()=>{
+            navigate("/login");
+          }}>Sign In</button>
+        </nav>
+      </header>
       <div className="auth_container">
         <div className="wrapper_container">
           <div className="left_auth_container">
-            <h1>Sign Up</h1>
+            <h1 style={{color:"#000"}}>Sign Up</h1>
             <div className="name_username">
               <input onChange={(e)=> setName(e.target.value)} type="text" placeholder="Name" />
               <input onChange={(e)=> setUsername(e.target.value)} type="text" placeholder="Username" />
@@ -57,7 +69,7 @@ function Register() {
             <input onChange={(e)=> setEmail(e.target.value)} type="text" placeholder="Email" />
             <input onChange={(e)=> setPassword(e.target.value)} type="text" placeholder="Password" />
 
-            <p>
+            <p style={{color:"#000"}}>
               Already have an account? <Link to="/login">Sign In</Link>
             </p>
             <button className="auth-button" onClick={handleSubmit}>
@@ -67,6 +79,7 @@ function Register() {
           <div className="right_auth_container"></div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

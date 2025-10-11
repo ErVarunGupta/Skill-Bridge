@@ -3,6 +3,7 @@ import React from "react";
 import "./MyLibrary.css";
 import demoData from "../utils/demoData";
 import Navbar from "../components/Navbar";
+import Footer from "../../../layouts/Footer";
 
 function MyLibrary() {
   // Example data (replace with real data later)
@@ -50,6 +51,7 @@ function MyLibrary() {
         ))}
       </div>
     </div>
+    <Footer/>
     </>
   );
 }

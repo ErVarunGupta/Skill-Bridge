@@ -5,6 +5,8 @@ import { MyContext } from "../MyContext";
 import { getUserProfile, uploadProfilePicture } from "../api/authApi";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "../layouts/Navbar";
+import Footer from "../layouts/Footer";
 
 const ShowProfile = () => {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const ShowProfile = () => {
   const profile = userProfile?.profile;
 
   return (
+    <div className="p-container">
+      <Navbar/>
     <div className="profile-card">
       <div className="profile-header">
         <div className="user_image">
@@ -98,6 +102,8 @@ const ShowProfile = () => {
           <strong>Rating:</strong> ⭐ {profile.averageRating?.toFixed(1)}/5
         </p>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

@@ -1,101 +1,229 @@
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    height: 4rem;
-    padding-inline: 3rem;
-    border-bottom: 1px solid silver;
-    /* box-shadow: 1px 4px 10px 3px #e0e1e1; */
-    position: relative;
-    position: fixed;
+/* ========== General Navbar Styling ========== */
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ========== Left Side (Logo) ========== */
+.left_navbar .skill_bridge_icon {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.skill_bridge_link {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.skill_bridge_link:hover {
+  color: #ffea00;
+}
+
+/* ========== Right Navbar Links ========== */
+.right_navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.right_navbar p {
+  margin: 0;
+}
+
+.nav_links {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav_links:hover {
+  color: #fff;
+}
+
+.nav_links.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.nav_links.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffea00;
+  border-radius: 4px;
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* Divider lines between links */
+.right_navbar hr {
+  height: 25px;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ========== Profile Icon ========== */
+.profile_icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile_icon:hover {
+  transform: scale(1.1);
+}
+
+.profile_icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== Profile Card Dropdown ========== */
+.profile_Card {
+  position: absolute;
+  top: 75px;
+  right: 40px;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.profile_Card p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  font-size: 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.profile_Card p:hover {
+  background: rgba(37, 117, 252, 0.1);
+}
+
+.profile_Card i {
+  color: #2575fc;
+}
+
+.hamburger{
+  display: none;
+}
+
+/* navbar items */
+.navbar_items{
+  position: absolute;
+  background-color: #243249;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 0 .5rem .5rem 0;
+  top: 4rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.hide_navbar_items{
+  left: -15rem;
+}
+
+.show_navbar_items{
+  left: 0;
+}
+
+.navbar_items hr{
+  display: flex;
+  width: 100%;
+}
+
+/* ========== Animations ========== */
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
     width: 100%;
+  }
 }
 
-.left_navbar{
-    display: flex;
-    gap: 1rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.left_navbar .skill_bridge_icon .skill_bridge_link{
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.right_navbar{
-    display: flex;
-    gap: 1rem;
-}
-
-.right_navbar p{
-    display: flex;
-    max-width: 10rem;
-    align-items: center;
-    text-align: center;
-}
-
-.right_navbar p .nav_links{
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: .5s;
-}
-
-.right_navbar p .nav_links:hover{
-    color: blue;
-}
-
-.profile_icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 100%;
-    cursor: pointer;
-}
-
-.profile_icon img{
-    width: 85%;
-    height: 85%;
-    border-radius: 100%;
-}
-
-/* profileCard */
-.profile_Card{
-    top: 4.5rem;
-    right: 3rem;
-    position: absolute;
-    display: flex;
+/* ========== Responsive Design ========== */
+@media (max-width: 1024px) {
+  .navbar {
     flex-direction: column;
-    background-color: rgb(197, 235, 247);
-    width: 12rem;
-    padding: 1rem;
-    border-radius: .5rem;
-    gap: 1.4rem;
-    align-items: center;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .right_navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
-.profile_Card p{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    background-color: transparent;
-    border-radius: .5rem;
+@media (max-width: 600px) {
+  .skill_bridge_icon {
+    font-size: 22px;
+  }
+
+  .nav_links {
+    font-size: 14px;
+  }
+
+  .profile_Card {
+    right: 20px;
+    width: 200px;
+  }
+
+  .right_navbar{
+    display: none;
+  }
+
+  .hamburger{
+    display: block;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 1.3rem;
+    color: #fff;
     cursor: pointer;
-    transition: .2s;
-    gap: .5rem;
-}
-
-.profile_Card p:hover{
-    transform: translateY(-1px);
-}
-
-
-.nav_links.active{
-    border-bottom: 2px solid blue;
-}
-
-.deactive{
-    border: none;
+  }
 }
