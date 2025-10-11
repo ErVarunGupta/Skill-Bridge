@@ -353,10 +353,10 @@ body {
     right: 0;
 }
 
-.left_dashboard_container:hover + .left-sider-controller,.left-sider-controller:hover  {
+.left-sider-controller:hover  {
   transform: translateX(0);
 }
-.right_dashboard_container:hover + .right-sider-controller,.right-sider-controller:hover  {
+.right-sider-controller:hover  {
   transform: translateX(0);
 }
 
