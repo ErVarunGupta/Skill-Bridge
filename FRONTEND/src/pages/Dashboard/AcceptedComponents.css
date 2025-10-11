@@ -1,0 +1,166 @@
+/* Wrapper */
+.offers_wrapper_container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Loading */
+.loading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2575fc;
+  margin-top: 15%;
+  text-align: center;
+}
+
+/* Title */
+.wrapper_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2575fc;
+  margin-bottom: 1.5rem;
+  align-self: center;
+}
+
+/* Cards Container */
+.accepted_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  justify-content: center;
+}
+
+/* Card */
+.accepted_card_conatainer {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.accepted_card_conatainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Section */
+.helper_profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.helper_profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2575fc;
+}
+
+.helper_profile div p {
+  margin: 0;
+  color: #000;
+}
+
+.helper_profile .username {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.helper_profile button {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: #2575fc;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.helper_profile button:hover {
+  background: #6a11cb;
+  transform: scale(1.05);
+}
+
+/* Request Details */
+.requests_details p {
+  margin: 0.3rem 0;
+}
+
+.requests_details .label {
+  font-weight: 600;
+  color: #000;
+}
+
+.requests_details .value {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.completed_status {
+  color: green;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.action_buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.action_buttons button {
+  flex: 1;
+  padding: 0.6rem 0;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action_buttons button:hover {
+  opacity: 0.9;
+}
+
+.action_buttons .accept_btn {
+  background: #28a745;
+  color: #fff;
+}
+
+.action_buttons .decline_btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.action_buttons button:first-child {
+  background: #6c757d;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .accepted_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .helper_profile button {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}

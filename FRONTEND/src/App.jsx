@@ -6,21 +6,18 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { useState } from "react";
-import AcceptedRequests from "./pages/Dashboard/AcceptedRequests";
-import AcceptedOffers from "./pages/Dashboard/AcceptedOffers";
 import HelpForm from "./pages/Dashboard/HelpForm";
-import UpcomingSessions from "./pages/Dashboard/UpcomingSessions";
 import ProfileUpdate from "./components/ProfileUpdate";
 import ShowProfile from "./components/ShowProfile";
 import Chat from "./components/ChatBox";
 import VideoCall from "./components/VideoCall";
 import FeedbackForm from "./pages/FeedbackForm/FeedbackForm";
-import CompletedRequests from "./pages/Dashboard/CompletedRequests";
 import Home from "./pages/Dashboard/Home";
 import MyLibrary from "./pages/Materials/pages/MyLibrary";
 import UploadMaterial from "./pages/Materials/pages/UploadMaterial";
 import MaterialDetail from "./pages/Materials/pages/MaterialDetail";
 import StudyMaterialDashboard from "./pages/Materials/pages/StudyMaterialDashboard";
+import { AcceptedOffers, AcceptedRequests, CompletedRequests, UpcomingSessions } from "./pages/Dashboard/AcceptedAll";
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);

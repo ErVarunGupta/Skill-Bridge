@@ -5,7 +5,7 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: #f5f6fa;
+  background: #0f172a;
 }
 
 .chat-container {
@@ -108,9 +108,9 @@
 }
 
 .input-box input {
-  padding: 1rem;
+  padding:.5rem 1rem;
   width: 100%;
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: 2rem 0 0 2rem;
   outline: none;
   border: 2px solid silver;
   border-right: none;
@@ -118,10 +118,10 @@
 }
 
 .input-box button {
-  padding: 1rem;
+  padding:.5rem 1rem;
   border: 2px solid silver;
   border-left: none;
-  border-radius: 0 .5rem .5rem 0;
+  border-radius: 0 2rem 2rem 0;
   background-color: #009688;
   font-size: 1.5rem;
   color: #fff;
@@ -132,4 +132,19 @@
 
 .input-box button:hover {
   background-color: #00796b;
+}
+
+
+
+@media (max-width: 767px){
+  .chat-wrapper-container{
+    padding: 0;
+  }
+  .chat-header{
+    width: 100%;
+  }
+  .chat-container {
+    height: 100vh;
+    width: 100%;
+  }
 }

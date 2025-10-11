@@ -37,7 +37,7 @@ export default function CalendarInput() {
   };
 
   return (
-    <div>
+    <div className="schedule-container">
       {dateTimeObj && (
         <p>
           <strong>Date:</strong> {dateTimeObj.date} <br />
@@ -45,7 +45,7 @@ export default function CalendarInput() {
         </p>
       )}
 
-      <label>Select Date & Time:</label>
+      <label style={{color:'#8b5cf6'}}>Select Date & Time</label>
       <DatePicker
         selected={selectedDate}
         onChange={handleChange}
