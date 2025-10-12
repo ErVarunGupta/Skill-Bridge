@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./LandingNav.css";
+import { useNavigate } from "react-router-dom";
 
 function LandingNav() {
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
   return (
     <>
