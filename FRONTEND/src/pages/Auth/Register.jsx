@@ -3,6 +3,7 @@ import "./auth.styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { MyContext } from "../../MyContext";
 import Footer from "../../layouts/Footer";
+import LandingNav from "../../layouts/LandingNav";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL ;
 
@@ -47,17 +48,7 @@ function Register() {
   };
   return (
     <>
-    <header className="landing_page_navbar">
-        <h1 className="logo">Skill Bridge</h1>
-        <nav className="nav-links">
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
-          <button className="signin-btn" onClick={()=>{
-            navigate("/login");
-          }}>Sign In</button>
-        </nav>
-      </header>
+      <LandingNav/>
       <div className="auth_container">
         <div className="wrapper_container">
           <div className="left_auth_container">

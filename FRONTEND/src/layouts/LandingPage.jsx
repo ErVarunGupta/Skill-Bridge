@@ -1,25 +1,14 @@
-import React from "react";
 import "./LandingPage.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import LandingNav from "./LandingNav";
 
 export default function LandingPage() {
-    const navigate = useNavigate()
+  
+  const navigate = useNavigate();
   return (
     <div className="landing-container">
-      {/* Navbar */}
-      <header className="landing_page_navbar">
-        <h1 className="logo">Skill Bridge</h1>
-        <nav className="nav-links">
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
-          <button className="signin-btn" onClick={()=>{
-            navigate("/login");
-          }}>Sign In</button>
-        </nav>
-      </header>
-
+      <LandingNav/>
       {/* Hero Section */}
       <main className="hero">
         <h2 className="hero-title">Get Help, Give Help – Anytime, Anywhere</h2>
@@ -28,9 +17,14 @@ export default function LandingPage() {
           share study material, and grow together.
         </p>
         <div className="hero-buttons">
-          <button className="primary-btn" onClick={()=>{
-            navigate("/login");
-          }}>Get Started →</button>
+          <button
+            className="primary-btn"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Get Started →
+          </button>
         </div>
       </main>
 
@@ -54,7 +48,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
       {/* <footer className="footer">
         <p>© {new Date().getFullYear()} HelpExchange. All rights reserved.</p>
       </footer> */}

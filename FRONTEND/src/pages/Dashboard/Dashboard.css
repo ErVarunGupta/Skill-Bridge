@@ -314,7 +314,7 @@ body {
 .left-sider-controller,
 .right-sider-controller {
   position: absolute;
-  top: 50%;
+  top: 1rem;
   transform: translateY(-50%);
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #fff;
@@ -322,7 +322,6 @@ body {
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  z-index: 20;
 }
 .left-sider-controller {
   border-radius: 0 .5rem .5rem 0;
@@ -371,7 +370,6 @@ body {
   }
   .left_dashboard_container {
     left: 0;
-    
   }
   .right_dashboard_container {
     right: 0;
@@ -379,13 +377,15 @@ body {
   .left-sider-controller {
     position: fixed;
     z-index: 15;
-    left: 0;
+    left: -0.5rem;
+    top: 4rem;
     transform: translateX(0);
   }
   .right-sider-controller {
     position: fixed;
     z-index: 15;
-    right: 0;
+    right: -0.5rem;
+    top: 4rem;
     transform: translateX(0);
   }
   .main_dashboard_container {
