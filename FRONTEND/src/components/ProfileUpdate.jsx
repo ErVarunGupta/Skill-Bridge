@@ -3,6 +3,8 @@ import "./ProfileUpdate.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { uploadProfilePicture } from "../api/authApi";
+import Navbar from "../layouts/Navbar";
+import Footer from "../layouts/Footer";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080/api";
 
@@ -187,6 +189,8 @@ const ProfileUpdate = () => {
   //   };
 
   return (
+    <>
+    <Navbar/>
     <div className="profile-container">
       <h2 className="profile-title">Update Profile</h2>
       <form onSubmit={handleSubmit} className="profile-form">
@@ -388,6 +392,8 @@ const ProfileUpdate = () => {
         </div>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 };
 
