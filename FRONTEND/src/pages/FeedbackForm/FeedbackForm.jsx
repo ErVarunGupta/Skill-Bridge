@@ -97,7 +97,7 @@ export default function FeedbackForm() {
       updateRating({ helperId, feedback });
       alert("Thank you for your feedback!");
       resetForm();
-      navigate("/dashboard/home");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Submit failed:", err);
       alert("Something went wrong. Try again.");
