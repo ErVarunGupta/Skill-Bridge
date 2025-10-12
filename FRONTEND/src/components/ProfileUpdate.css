@@ -14,6 +14,10 @@
   margin-bottom: 20px;
 }
 
+.title{
+  color: #333;
+}
+
 .profile-form{
     display: flex;
     flex-direction: column;
