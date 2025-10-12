@@ -228,7 +228,7 @@ const ProfileUpdate = () => {
         </div>
         {/* Bio */}
         <div>
-          <h3>Bio:</h3>
+          <h3 className="title">Bio:</h3>
           <textarea
             name="bio"
             value={profile.bio}
@@ -238,7 +238,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div>
-          <h3>Current Post:</h3>
+          <h3 className="title">Current Post:</h3>
           <input
             type="text"
             name="currentPost"
@@ -249,7 +249,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div>
-          <h3>Skills</h3>
+          <h3 className="title">Skills</h3>
           <div className="skills-list">
             {profile.skills.map((skill, index) => (
               <span key={index} className="skill-tag">
@@ -279,7 +279,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div>
-          <h3>Past Work</h3>
+          <h3 className="title">Past Work</h3>
           {profile.pastWork.map((work, index) => (
             <div key={index} className="card">
               <p>
@@ -331,7 +331,7 @@ const ProfileUpdate = () => {
 
         {/* Education */}
         <div>
-          <h3>Education</h3>
+          <h3 className="title">Education</h3>
           {profile.education.map((edu, index) => (
             <div key={index} className="card">
               <p>
