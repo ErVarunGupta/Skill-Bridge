@@ -15,7 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getRequestById } from "../api/helpApi";
 
 function Chat() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { requestId } = useParams();
   const [request, setRequest] = useState(null);
   //   const { request } = useContext(MyContext);
@@ -77,23 +77,25 @@ function Chat() {
   };
   return (
     <div className="chat-wrapper-container">
-      <div className="chat-header">
-        <p onClick={()=> navigate(-1)} className="back-arrow"><i class="fa-solid fa-arrow-left"></i></p>
-        <img
-          src={
-            currentUserId === user1
-              ? request?.helperId.profilePicture
-              : request?.userId.profilePicture
-          }
-          alt=""
-        />
-        <p>
-          {currentUserId === user1
-            ? request?.helperId.name
-            : request?.userId.name}
-        </p>
-      </div>
       <div className="chat-container">
+        <div className="chat-header">
+          <p onClick={() => navigate(-1)} className="back-arrow">
+            <i class="fa-solid fa-arrow-left"></i>
+          </p>
+          <img
+            src={
+              currentUserId === user1
+                ? request?.helperId.profilePicture
+                : request?.userId.profilePicture
+            }
+            alt=""
+          />
+          <p>
+            {currentUserId === user1
+              ? request?.helperId.name
+              : request?.userId.name}
+          </p>
+        </div>
         <div className="chat-box">
           {messages.map((msg, idx) => {
             const time = msg.timestamp?.toDate
