@@ -34,8 +34,8 @@ function Dashboard() {
     setFilterRequests,
   } = useContext(MyContext);
 
-  const [showLeftSider, setShowLeftSider] = useState(true);
-  const [showRightSider, setShowRightSider] = useState(true);
+  const [showLeftSider, setShowLeftSider] = useState(false);
+  const [showRightSider, setShowRightSider] = useState(false);
 
   const decoded = jwtDecode(localStorage.getItem("token"));
 
