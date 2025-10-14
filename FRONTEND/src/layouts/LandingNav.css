@@ -54,11 +54,11 @@
 }
 
 .items-hide{
-    transform: translateX(10rem);
+    right: -10rem;
 }
 
 .item-show{
-    transform: translateX(0);
+    right: 0;
 }
 
 .nav-links a, .nav-links-items a {
