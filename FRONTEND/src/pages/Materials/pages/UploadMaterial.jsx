@@ -1,6 +1,6 @@
 import Footer from "../../../layouts/Footer";
 import Navbar from "../components/Navbar";
-import UploadForm from "../components/UploadForm";
+import UploadPage from "./UploadPage";
 // import '../styles.css'
 
 function UploadMaterial() {
@@ -8,7 +8,7 @@ function UploadMaterial() {
     <>
     <Navbar />
     <div className="container">
-      <UploadForm />
+      <UploadPage />
     </div>
     <Footer/>
     </>

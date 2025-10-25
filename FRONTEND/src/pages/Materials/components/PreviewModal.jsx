@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import "./PreviewModal.css";
-import RatingStars from "./RatingStars"; // optional
+import RatingStars from "./Review"; // optional
+import { updateMaterial } from "../../../api/materialApi";
 
 const WOWPreviewModal = ({ material, onClose }) => {
   const [activeTab, setActiveTab] = useState("preview");
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-
-  const handleAddComment = () => {
-    if (newComment.trim()) {
-      setComments([...comments, newComment.trim()]);
-      setNewComment("");
-    }
-  };
+  
 
   return (
     <div className="wow-overlay">
       <div className="wow-modal">
         <button className="wow-close-btn" onClick={onClose}>
-          ✖
+          <i class="fa-solid fa-xmark"></i>
         </button>
         <h2 className="wow-title">{material.title}</h2>
 
@@ -28,25 +21,25 @@ const WOWPreviewModal = ({ material, onClose }) => {
             className={activeTab === "preview" ? "active" : ""}
             onClick={() => setActiveTab("preview")}
           >
-            👁 Preview
+            <i class="fa-solid fa-eye"></i> Preview
           </button>
           <button
             className={activeTab === "ai" ? "active" : ""}
             onClick={() => setActiveTab("ai")}
           >
-             AI Summary
+            <i class="fa-solid fa-rocket"></i> AI Summary
           </button>
           <button
             className={activeTab === "related" ? "active" : ""}
             onClick={() => setActiveTab("related")}
           >
-             Related
+            Related
           </button>
           <button
             className={activeTab === "comments" ? "active" : ""}
             onClick={() => setActiveTab("comments")}
           >
-            💬 Comment & Rate
+            <i class="fa-solid fa-comment"></i> Comment & Rate
           </button>
         </div>
 
@@ -54,25 +47,29 @@ const WOWPreviewModal = ({ material, onClose }) => {
         <div className="wow-content">
           {activeTab === "preview" && (
             <div className="wow-section">
-              <iframe
+              <img
                 src={material.imageUrl}
                 title="preview"
                 width="100%"
                 height="400px"
-                style={{ borderRadius: "10px", border: "1px solid #ccc" }}
-              ></iframe>
+                style={{ borderRadius: "10px", border: "1px solid #ccc"}}
+              ></img>
             </div>
           )}
           {activeTab === "ai" && (
             <div className="wow-section">
               <p>
-                Newton's laws of motion describe the relationship between the motion of an object and the forces acting on it.
-                <br /> 
-1. First Law (Law of Inertia): An object will stay at rest or move in a straight line at constant speed unless acted upon by a force.
-<br />
-2. Second Law: Force equals mass times acceleration (F = ma).
-<br />
-3. Third Law: For every action, there is an equal and opposite reaction.
+                Newton's laws of motion describe the relationship between the
+                motion of an object and the forces acting on it.
+                <br />
+                1. First Law (Law of Inertia): An object will stay at rest or
+                move in a straight line at constant speed unless acted upon by a
+                force.
+                <br />
+                2. Second Law: Force equals mass times acceleration (F = ma).
+                <br />
+                3. Third Law: For every action, there is an equal and opposite
+                reaction.
               </p>
             </div>
           )}
@@ -86,23 +83,7 @@ const WOWPreviewModal = ({ material, onClose }) => {
             </div>
           )}
           {activeTab === "comments" && (
-            <div className="wow-section">
-              <RatingStars rating={material.rating} />
-              <div className="wow-comment-box">
-                <input
-                  type="text"
-                  placeholder="Write a comment..."
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                />
-                <button onClick={handleAddComment}>Add</button>
-              </div>
-              <ul className="wow-comment-list">
-                {comments.map((c, idx) => (
-                  <li key={idx}>{c}</li>
-                ))}
-              </ul>
-            </div>
+            <RatingStars rating={material.rating} />
           )}
         </div>
       </div>

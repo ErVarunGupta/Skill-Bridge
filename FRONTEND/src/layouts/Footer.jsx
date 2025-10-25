@@ -22,12 +22,12 @@ function Footer() {
         </div>
         <div className="footer-section contact">
           <h3>Contact</h3>
-          <p>Email: support@example.com</p>
-          <p>Phone: +91 12345 67890</p>
+          <p>Email: <span style={{color:'blue'}}>varungupta0994@gmail.com</span></p>
+          <p>Phone: <span style={{color:'blue'}}>+91 6205993601</span></p>
         </div>
       </div>
       <div className="footer-bottom">
-        &copy; {new Date().getFullYear()} YourPlatform. All rights reserved.
+        &copy; {new Date().getFullYear()} Skill Bridge. All rights reserved.
       </div>
     </footer>
   );

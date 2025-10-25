@@ -1,4 +1,4 @@
-/* study-navbar Container */
+/* Navbar container */
 .study-navbar {
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,6 @@
   z-index: 1000;
 }
 
-/* Logo */
 .study-navbar h1 {
   margin: 0;
   font-size: 1.6rem;
@@ -26,8 +25,8 @@
   transform: scale(1.05);
 }
 
-/* Menu List */
-.study-navbar ul {
+/* Menu list for large screens */
+.study-navbar .show-items {
   display: flex;
   list-style: none;
   margin: 0;
@@ -35,13 +34,11 @@
   gap: 2rem;
 }
 
-/* Menu Items */
 .study-navbar li {
   position: relative;
   transition: color 0.3s ease;
 }
 
-/* Menu Links */
 .study-navbar li a {
   text-decoration: none;
   color: #fff;
@@ -51,7 +48,6 @@
   transition: color 0.3s ease;
 }
 
-/* Hover Effect */
 .study-navbar li a:hover {
   color: #ffdd57;
 }
@@ -71,17 +67,97 @@
   width: 100%;
 }
 
-/* Responsive */
+/* ======================
+   Hamburger Button
+====================== */
+.hamburger {
+  display: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* ======================
+   Sidebar Slide Menu
+====================== */
+.profile_sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+  padding: 60px 20px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+  transition: left 0.3s ease-in-out;
+  z-index: 1200;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.profile_sidebar.open {
+  left: 0;
+}
+
+.hide-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hide-items li {
+  margin: 15px 0;
+}
+
+.hide-items li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  display: block;
+  background: #292929;
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.hide-items li a:hover {
+  background: linear-gradient(90deg, #4f46e5, #3b82f6);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+/* Overlay (click to close sidebar) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1100;
+}
+
+/* ======================
+   Responsive Design
+====================== */
 @media (max-width: 768px) {
-  .study-navbar {
-    flex-direction: column;
-    padding: 1rem;
+  .study-navbar .show-items {
+    display: none;
   }
 
-  .study-navbar ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 0.8rem;
+  .study-navbar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hamburger {
+    display: block;
   }
 }
