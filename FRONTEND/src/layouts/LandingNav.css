@@ -1,6 +1,5 @@
 /* Navbar */
 .landing_page_navbar {
-
   width: 100%;
   height: 70px;
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
@@ -11,64 +10,83 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .logo {
-
   color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
   text-decoration: none;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.logo:hover{
+.logo:hover {
   color: #ffea00;
 }
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 }
 
-.hidden{
-    display: none;
+/* Hide mobile header on desktop */
+.hidden {
+  display: none;
 }
 
-.hidden i{
-  font-size: 1.5rem;
+.menu-icon {
+  font-size: 1.7rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.nav-links-items{
-  position: absolute;
-  top: 4.5rem;
-  background-color: #041449;
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+/* ==============================
+   Mobile Slide Menu
+============================== */
+.nav-links-items {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(135deg, #041449, #0a2a73);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 1.8rem;
   align-items: center;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.4);
+  transition: right 0.35s ease-in-out;
+  z-index: 1200;
+}
+
+.items-show {
   right: 0;
-  padding: 2rem;
-  border-radius: .5rem 0 0 .5rem;
-  transition: 0.3s ease-in-out;
 }
 
-.items-hide{
-    right: -10rem;
+.items-hide {
+  right: -260px;
 }
 
-.item-show{
-    right: 0;
-}
-
-.nav-links a, .nav-links-items a {
+.nav-links a,
+.nav-links-items a {
   text-decoration: none;
   color: #f9f8f8;
   font-weight: 500;
-  transition: color 0.2s;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
 }
 
-.nav-links a:hover, .nav-links-items a:hover {
+.nav-links a:hover,
+.nav-links-items a:hover {
   color: #05f8f8;
 }
 
@@ -76,21 +94,41 @@
   background: #043bb2;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s ease;
+  font-weight: 600;
 }
 
 .signin-btn:hover {
   background: #020e35;
 }
 
-@media (max-width: 767px){
-  .show{
+/* Overlay for mobile menu */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1100;
+  backdrop-filter: blur(2px);
+}
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 767px) {
+  .show {
     display: none;
   }
-  .hidden{
+
+  .hidden {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
   }
 }

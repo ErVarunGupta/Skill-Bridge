@@ -41,6 +41,11 @@ function UploadMaterial() {
           />
         </label>
         <label>
+          Visibility:
+          <button type='radio' name='visible' id='visible'>public</button>
+          <button type='radio' name='visible' id='visible'>private</button>
+        </label>
+        <label>
           Select File:
           <input
             type="file"

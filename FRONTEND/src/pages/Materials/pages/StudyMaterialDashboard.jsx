@@ -11,14 +11,30 @@ import PreviewModal from "../components/PreviewModal";
 import demoData from "../utils/demoData";
 import FilterMenu from "../components/FilterMenu";
 import Footer from "../../../layouts/Footer";
+import { getMaterials } from "../../../api/materialApi";
+import { useEffect } from "react";
 
 const StudyMaterialDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedMaterial, setSelectedMaterial] = useState(null);
 
+  const [materials, setMaterials] = useState([]);
+
+  //data from backend
+  useEffect(() => {
+    const fetchMaterials = async () => {
+      const data = await getMaterials();
+      console.log(data);
+
+      setMaterials(data.materials);
+    };
+
+    fetchMaterials();
+  }, []);
+
   // Filtered Data
-  const filteredData = demoData.filter((item) => {
+  const filteredData = materials.filter((item) => {
     const matchesSearch = item.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
@@ -45,9 +61,14 @@ const StudyMaterialDashboard = () => {
         <div className="material-grid">
           {filteredData.map((item) => (
             <MaterialCard
-              key={item.id}
+              key={item._id}
               material={item}
-              onPreview={() => setSelectedMaterial(item)}
+              onPreview={() => {
+                setSelectedMaterial(item)
+                localStorage.removeItem('material_id');
+                localStorage.setItem('material_id', item._id)
+                // console.log(item)
+              }}
             />
           ))}
         </div>
@@ -79,7 +100,7 @@ const StudyMaterialDashboard = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

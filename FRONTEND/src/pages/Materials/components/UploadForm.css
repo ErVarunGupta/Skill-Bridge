@@ -70,3 +70,61 @@
 .btn:hover {
   background: #005fa3;
 }
+
+
+.visibility {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f0f7ff;
+  border-radius: 10px;
+  border: 1px solid #cce0ff;
+  flex-wrap: wrap;
+}
+
+.visibility h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0077cc;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.option:hover {
+  background: #e6f2ff;
+  transform: translateY(-2px);
+}
+
+.option.selected {
+  border-color: #0077cc;
+  background: #d8ecff;
+  box-shadow: 0 3px 8px rgba(0, 119, 204, 0.2);
+}
+
+.option input[type="radio"] {
+  accent-color: #0077cc;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.option label {
+  cursor: pointer;
+  text-transform: capitalize;
+  color: #333;
+  font-weight: 500;
+}
