@@ -20,7 +20,7 @@ export const getUsersProfile =  () => {
         });
 
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
 
         const { success, message } = result;
         if (success) {

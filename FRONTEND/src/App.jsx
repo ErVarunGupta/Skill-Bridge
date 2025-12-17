@@ -18,6 +18,9 @@ import UploadMaterial from "./pages/Materials/pages/UploadMaterial";
 import MaterialDetail from "./pages/Materials/pages/MaterialDetail";
 import StudyMaterialDashboard from "./pages/Materials/pages/StudyMaterialDashboard";
 import { AcceptedOffers, AcceptedRequests, CompletedRequests, UpcomingSessions } from "./pages/Dashboard/AcceptedAll";
+import AI_App from "../src/AI_CHAT/App";
+
+
 
 function App() {
   const [showRequestCard, setShowRequestCard] = useState(false);
@@ -109,6 +112,9 @@ function App() {
           <Route path="/material_upload" element={<UploadMaterial />} />
           <Route path="/my-notes" element={<MyLibrary />} />
           <Route path="/material/:id" element={<MaterialDetail />} />
+
+
+          <Route path="/ai_chat" element={<AI_App/>}/>
         </Routes>
       </MyContext.Provider>
     </>

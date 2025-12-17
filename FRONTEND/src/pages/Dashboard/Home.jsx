@@ -4,20 +4,43 @@ import { MyContext } from "../../MyContext";
 import { getUsersProfile } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { getRecommendations, getTopUsers } from "../../api/mlApi";
 
 function Home() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getRecommendations(10);
+        const data = await result.json();
+        console.log("API DATA:", data[0]);
+        setUsers(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error(err);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // console.log(api_users);
+  // ----------------
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const { users, loading } = getUsersProfile();
+  // const { users, loading } = getUsersProfile();
 
   const token = localStorage.getItem("token");
   const id = jwtDecode(token).id;
 
   const filteredUsers = users?.filter((user) => {
-    const username = user.userId?.username || "";
-    const email = user.userId?.email || "";
-    const name = user.userId?.name || "";
-    if (user.userId._id !== id) {
+    const username = user.username || "";
+    const email = user.email || "";
+    const name = user.name || "";
+    if (user.userId !== id) {
       return (
         name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         username.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -50,11 +73,11 @@ function Home() {
                   className="profile-pic"
                   src={user.userId?.profilePicture}
                   alt={user.name}
-                  onClick={() => navigate(`/show_profile/${user.userId?._id}`)}
+                  onClick={() => navigate(`/show_profile/${user.userId}`)}
                 />
                 <h3>{user.name}</h3>
-                <p className="username">@{user.userId?.username}</p>
-                <p className="email">{user.userId?.email}</p>
+                <p className="username">@{user.username}</p>
+                <p className="email">{user.email}</p>
                 <p className="bio">{user.bio}</p>
                 <div className="rating">
                   <span>⭐ {user.averageRating?.toFixed(1)}</span>

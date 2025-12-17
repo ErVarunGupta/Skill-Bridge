@@ -257,6 +257,10 @@ export const ProfileCard = () => {
           Materials
         </NavLink>
       </p>
+      <p>
+        <NavLink to="/ai_chat"
+          style={{ textDecoration: "none", color: "#fff" }}>🤖 Chat with AI</NavLink>
+      </p>
 
       <p onClick={logout}>
         <i class="fa-solid fa-right-from-bracket"></i>Log Out

@@ -1,0 +1,92 @@
+.user-container{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 18rem;
+    right: 2rem;
+    background-color: #323232;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+.user-container h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 1rem;
+    
+}
+
+.info-container{
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-container p{
+    color: #38bdf8;
+}
+
+.info-container p span{
+    font-style: italic;
+    color: #94a3b8;
+}
+
+
+.btn-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .5rem;
+    border-top: 1px solid #fff;
+}
+
+.btn-container button{
+    padding:.5rem 1rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn{
+    text-decoration: none;
+    padding: .5rem 1rem;
+    background-color: #3b82f6;
+    color: #fff;
+    border-radius: .5rem;
+}
+
+.edit-btn:hover{
+    background-color:#2563eb;
+}
+
+.delete-btn{
+    background-color: #ef4444;
+    color: #fff;
+}
+.delete-btn:hover{
+background-color: #dc2626;
+}
+
+
+.cross-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.cross-icon:hover{
+    background-color: #ef4444;
+    color: #fff;
+}

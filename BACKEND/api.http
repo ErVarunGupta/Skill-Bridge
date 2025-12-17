@@ -24,6 +24,10 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzFjZTQzODYwMjllMjBlYWJlYzRjMSIsImlhdCI6MTc1Nzg2MDIzMCwiZXhwIjoxNzU3OTQ2NjMwfQ.aXkV2kcTbUjWQZ3wSTFrvIO_s28_iuyP61B6Z3ESxVg
 
 
+### get Users
+GET http://localhost:8080/api/users HTTP/1.1
+Content-Type: application/json
+
 ### Create request
 POST http://localhost:8080/api/create_request HTTP/1.1
 Content-Type: application/json

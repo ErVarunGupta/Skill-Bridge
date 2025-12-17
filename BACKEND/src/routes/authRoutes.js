@@ -11,7 +11,8 @@ router.post("/upload_profile_picture", authValidation, upload.single("image"), u
 router.post("/register", Register)
 router.post("/login", Login)
 router.get("/user", authValidation, getUserProfile);
-router.get("/users", authValidation, getUsersProfile);
+// router.get("/users", authValidation, getUsersProfile);
+router.get("/users", getUsersProfile);
 router.put("/user_update", authValidation, updateUserProfile);
 
 
