@@ -11,7 +11,7 @@ export const GeminiConnection = async(message) =>{
                 success: false
             })
         }
-        const model = genAI.getGenerativeModel({model: 'gemini-2.0-flash'})
+        const model = genAI.getGenerativeModel({model: 'gemini-2.5-flash'})
         const response = await model.generateContent(message);
         const data = response.response.candidates[0].content.parts[0].text;
         

@@ -12,6 +12,8 @@ export const usePendingRequests = () => {
       const decoded = jwtDecode(localStorage.getItem("token"));
       const userId = decoded.id;
 
+      // console.log(userId)
+
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -25,9 +27,14 @@ export const usePendingRequests = () => {
 
       const { success, message, requests } = result;
       if (success) {
+        console.log("debug1")
+        console.log(requests)
         const offers = requests.filter((offer) => offer.userId._id !== userId);
+        console.log(offers)
         setPendingRequests(offers);
+        console.log("debug3")
       }
+      
     } catch (error) {
       console.log("Error during fetching pending requests: ", error.message);
     }

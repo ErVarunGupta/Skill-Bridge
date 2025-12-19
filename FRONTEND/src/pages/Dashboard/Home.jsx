@@ -14,7 +14,7 @@ function Home() {
       try {
         const result = await getRecommendations(10);
         const data = await result.json();
-        console.log("API DATA:", data[0]);
+        // console.log("API DATA:", data[0]);
         setUsers(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error(err);
@@ -71,7 +71,7 @@ function Home() {
               <div className="user-card" key={user._id}>
                 <img
                   className="profile-pic"
-                  src={user.userId?.profilePicture}
+                  src={user.profilePicture}
                   alt={user.name}
                   onClick={() => navigate(`/show_profile/${user.userId}`)}
                 />

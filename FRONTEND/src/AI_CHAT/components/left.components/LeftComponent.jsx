@@ -107,7 +107,7 @@ export const LeftComponent = () => {
 
   const changeThread = async (threadId) => {
     try {
-      const url = `${api_url}/api/thread/${threadId}`;
+      const url = `${api_url}/thread/${threadId}`;
       const response = await fetch(url);
       const data = await response.json();
       console.log(data.response[0].messages);
@@ -123,7 +123,7 @@ export const LeftComponent = () => {
 
   const deleteThread = async (threadId) => {
     try {
-      const url = `${api_url}/api/thread/${threadId}`;
+      const url = `${api_url}/thread/${threadId}`;
       const response = await fetch(url, {
         method: "DELETE"
       });

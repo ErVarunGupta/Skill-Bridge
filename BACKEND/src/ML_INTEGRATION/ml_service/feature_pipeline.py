@@ -1,19 +1,31 @@
 import pandas as pd
+import ast
+
+def safe_list(x):
+    if isinstance(x, list):
+        return x
+    if isinstance(x, str):
+        try:
+            return ast.literal_eval(x)
+        except:
+            return []
+    return []
 
 def build_ranking_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     df["bio"] = df["bio"].fillna("")
-    df["skills"] = df["skills"].fillna("[]")
-    df["comments"] = df["comments"].fillna("[]")
-    df["threads"] = df["threads"].fillna("[]")
     df["education"] = df["education"].fillna("")
     df["currentPost"] = df["currentPost"].fillna("")
     df["pastWork"] = df["pastWork"].fillna("")
 
+    df["skills"] = df["skills"].apply(safe_list)
+    df["comments"] = df["comments"].apply(safe_list)
+    df["threads"] = df["threads"].apply(safe_list)
+
     df["has_profile_pic"] = (df["profilePicture"] != "default.jpg").astype(int)
-    df["bio_length"] = df["bio"].apply(len)
-    df["num_skills"] = df["skills"].apply(lambda x: len(x) if isinstance(x, list) else 0)
+    df["bio_length"] = df["bio"].str.len()
+    df["num_skills"] = df["skills"].apply(len)
     df["has_current_post"] = df["currentPost"].ne("").astype(int)
     df["has_past_work"] = df["pastWork"].ne("").astype(int)
 
@@ -26,8 +38,8 @@ def build_ranking_features(df: pd.DataFrame) -> pd.DataFrame:
         return 0
 
     df["education_level"] = df["education"].apply(edu_score)
-    df["num_comments"] = df["comments"].apply(lambda x: len(x) if isinstance(x, list) else 0)
-    df["num_threads"] = df["threads"].apply(lambda x: len(x) if isinstance(x, list) else 0)
+    df["num_comments"] = df["comments"].apply(len)
+    df["num_threads"] = df["threads"].apply(len)
 
     df["createdAt"] = pd.to_datetime(df["createdAt"], errors="coerce")
     df["account_age_days"] = (

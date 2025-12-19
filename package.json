@@ -1,0 +1,24 @@
+{
+  "name": "skill-bridge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd BACKEND && nodemon start\" \"cd FRONTEND && npm run dev\" \"cd BACKEND/src/ML_INTEGRATION/ml_service && python -m uvicorn app:app --reload\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErVarunGupta/Skill-Bridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ErVarunGupta/Skill-Bridge/issues"
+  },
+  "homepage": "https://github.com/ErVarunGupta/Skill-Bridge#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
