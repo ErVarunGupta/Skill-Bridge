@@ -1,6 +1,7 @@
 import joblib
 import pandas as pd
 from feature_pipeline import build_ranking_features
+from huggingface_hub import hf_hub_download
 
 # Load inference data
 df = pd.read_csv("inference_data.csv")
@@ -15,8 +16,22 @@ df["profile_text"] = (
 )
 
 # Load models
-rank_model = joblib.load("profile_ranking_model.pkl")
-tfidf = joblib.load("tfidf_profile_vectorizer.pkl")
+MODEL_REPO = "varungupta0994/skillbridge-ml-models"
+
+profile_ranking = hf_hub_download(
+    repo_id=MODEL_REPO,
+    filename="profile_ranking_model.pkl"
+)
+
+tfidf_vectorizer = hf_hub_download(
+    repo_id=MODEL_REPO,
+    filename="tfidf_profile_vectorizer.pkl"
+)
+
+rank_model = joblib.load(profile_ranking)
+tfidf = joblib.load(tfidf_vectorizer)
+# rank_model = joblib.load("profile_ranking_model.pkl")
+# tfidf = joblib.load("tfidf_profile_vectorizer.pkl")
 
 # Force sklearn objects to initialize
 X = build_ranking_features(df)
