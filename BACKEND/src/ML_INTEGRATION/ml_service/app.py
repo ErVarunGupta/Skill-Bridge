@@ -7,12 +7,32 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from mongo_loader import load_profiles_df
 from feature_pipeline import build_ranking_features
+from huggingface_hub import hf_hub_download
 
 app = FastAPI(title="SkillBridge ML Service")
 
+# Get model from Hugging face---------------------------------------
+
+
+MODEL_REPO = "varungupta0994/skillbridge-ml-models"
+
+profile_ranking = hf_hub_download(
+    repo_id=MODEL_REPO,
+    filename="profile_ranking_model.pkl"
+)
+
+tfidf_vectorizer = hf_hub_download(
+    repo_id=MODEL_REPO,
+    filename="tfidf_profile_vectorizer.pkl"
+)
+
+rank_model = joblib.load(profile_ranking)
+tfidf = joblib.load(tfidf_vectorizer)
+# --------------------------------------------------------
+
 # Load ML models once
-rank_model = joblib.load("profile_ranking_model.pkl")
-tfidf = joblib.load("tfidf_profile_vectorizer.pkl")
+# rank_model = joblib.load("profile_ranking_model.pkl")
+# tfidf = joblib.load("tfidf_profile_vectorizer.pkl")
 
 
 def clean_for_json(df: pd.DataFrame) -> pd.DataFrame:
