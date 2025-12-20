@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-pandas
-numpy
-scikit-learn==1.8.0
-joblib
-huggingface_hub
-
