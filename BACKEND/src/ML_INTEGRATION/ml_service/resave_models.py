@@ -1,6 +1,6 @@
 import joblib
 import pandas as pd
-from feature_pipeline import build_ranking_features
+from .feature_pipeline import build_ranking_features
 from huggingface_hub import hf_hub_download
 
 # Load inference data
