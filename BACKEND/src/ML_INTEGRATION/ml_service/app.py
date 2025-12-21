@@ -5,7 +5,7 @@ import numpy as np
 from functools import lru_cache
 from sklearn.metrics.pairwise import cosine_similarity
 
-from ML_INTEGRATION.ml_service.mongo_loader import load_profiles_df
+from .mongo_loader import load_profiles_df
 
 from feature_pipeline import build_ranking_features
 from huggingface_hub import hf_hub_download
