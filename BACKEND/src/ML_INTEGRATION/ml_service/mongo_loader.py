@@ -1,5 +1,5 @@
 import pandas as pd
-from db import users_col, profiles_col
+from .db import users_col, profiles_col
 
 def load_profiles_df():
     users = list(users_col.find({}))
